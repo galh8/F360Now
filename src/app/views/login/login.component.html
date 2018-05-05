@@ -1,0 +1,50 @@
+<div class="app-body" xmlns:color="http://www.w3.org/1999/xhtml">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 mx-auto">
+          <form #userLoginForm="ngForm" (ngSubmit)="OnSubmit(userLoginForm)">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <h1>Login</h1>
+                <p class="text-muted">Sign In to your account</p>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                  </div>
+                  <input type="email" name="Email" #Email="ngModel" placeholder="Email" [(ngModel)]="user.Email">
+                </div>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                  </div>
+                  <input type="password" name="Password" #Password="ngModel" placeholder="Password" [(ngModel)]="user.Password">
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <button class="btn btn-primary px-4" type="submit">Login</button>
+                  </div>
+                  <div class="col-6 text-right">
+                    <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+              <div class="card-body text-center">
+                <div>
+                  <h2>Sign up</h2>
+                  <p>Be a better trainer!</p>
+                  <button class="btn btn-primary active mt-3" (click)="JumpToRegister();">Register Now!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
