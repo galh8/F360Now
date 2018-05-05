@@ -12,7 +12,7 @@ import {Data, Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   user: User;
 
-  constructor(private router: Router,private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {
     this.resetForm();

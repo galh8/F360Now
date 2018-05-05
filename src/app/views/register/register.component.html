@@ -1,4 +1,4 @@
-<div class="app-body">
+<form class="app-body" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
   <main class="main d-flex align-items-center">
     <div class="container">
       <div class="row">
@@ -11,41 +11,49 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon-user"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control validate" placeholder="First Name" name="FirstName" #FirstName="ngModel" [(ngModel)]="user.FirstName" required>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-user"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Last Name" name="LastName" #LastName="ngModel" [(ngModel)]="user.LastName" required>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">@</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="email" class="form-control" placeholder="Email" name="Email" #Email="ngModel" [(ngModel)]="user.Email" required>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-heart"></i></span>
+                </div>
+                <input type="date" class="form-control" placeholder="Birthday" name="Birthday" #Birthday="ngModel" [(ngModel)]="user.Birthday">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-phone"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Phone Number" name="PhoneNumber" #PhoneNumber="ngModel" [(ngModel)]="user.PhoneNumber">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon-lock"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="Password">
+                <input id="password" type="password" class="form-control" required minlength="5" placeholder="Password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" required>
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon-lock"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="Repeat password">
+                <input id="RePassword" type="password" class="form-control" required minlength="5" name="RePassword" #RePassword="ngModel" [(ngModel)]="RePass" placeholder="Repeat password" required>
               </div>
-              <button type="button" class="btn btn-block btn-success">Create Account</button>
-            </div>
-            <div class="card-footer p-4">
-              <div class="row">
-                <div class="col-6">
-                  <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
-                </div>
-              </div>
+              <button [disabled]="!userRegistrationForm.valid" type="submit" class="btn btn-block btn-success">Create Account</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </main>
-</div>
+</form>
