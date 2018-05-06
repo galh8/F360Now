@@ -3,7 +3,7 @@ import {User} from '../../shared/user.model';
 import {UserService} from '../../shared/user.service';
 import {NgForm} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
-import {Data, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     console.log("ON sumbit function!!");
     console.log(this.user.Email);
     console.log(this.user.Password);
-    var u: Data;
 
     this.userService.loginUser(this.user.Email,this.user.Password)
       .subscribe((data: any) => {
@@ -46,10 +45,14 @@ export class LoginComponent implements OnInit {
             alert('Error!');
             this.router.navigateByUrl('/login');
           } else {
-            //alert('Succeeded! - welcom' + data.u.first_name);
-            console.log(data);
-            u = data.object;
-            console.log(u);
+            this.user.FirstName = data.user.first_name;
+            this.user.LastName = data.user.last_name;
+            this.user.Birthday = data.user.birthdate;
+            this.user.PhoneNumber = data.user.phone_number;
+            localStorage.setItem('first_name', this.user.FirstName);
+            localStorage.setItem('last_name', this.user.LastName);
+            localStorage.setItem('birthday', this.user.Birthday);
+            localStorage.setItem('phone_number', this.user.PhoneNumber);
             this.router.navigateByUrl('/dashboard');
           }
         },

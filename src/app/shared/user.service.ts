@@ -4,7 +4,21 @@ import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {User} from './user.model';
-import {Data} from '@angular/router';
+
+interface UserResponse {
+  birthdate: string;
+  email: string;
+  first_name: string;
+  has_picture: boolean;
+  last_name: string;
+  phone_number: string;
+}
+
+
+interface UserObject {
+  userRes: UserResponse;
+  error: boolean;
+}
 
 @Injectable()
 export class UserService {
@@ -19,7 +33,7 @@ export class UserService {
     postData.append('email', user.Email);
     postData.append('password', user.Password);
 
-    return this.http.post<Data>(this.rootUrl + 'register.php', postData);
+    return this.http.post(this.rootUrl + 'register.php', postData);
   }
 
   loginUser(email: string, password: string) {
@@ -27,7 +41,7 @@ export class UserService {
     postData.append('email', email);
     postData.append('password', password);
 
-    return this.http.post<Data>(this.rootUrl + 'login.php', postData);
+    return this.http.post(this.rootUrl + 'login.php', postData);
   }
 
 }

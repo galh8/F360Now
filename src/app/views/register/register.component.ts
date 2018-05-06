@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {UserService} from '../../shared/user.service';
 import {NgForm} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {Data, Router} from '@angular/router';
-import {User} from '../../shared/user.model';
+import {User} from '../../shared/user.model'
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'register.component.html'
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   user: User;
   private RePass;
 
@@ -38,12 +37,12 @@ export class RegisterComponent implements OnInit{
   OnSubmit(form: NgForm) {
 
     this.userService.registerUser(form.value)
-      .subscribe((data: Data) => {
+      .subscribe((data: any) => {
           console.log(data.error);
           if (data.error == true){
             alert('Error!');
           } else {
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/login');
           }
         },
         err => {
