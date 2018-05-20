@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AddPatientComponent} from './add-patient/add-patient.component';
 import {EditDetailsComponent} from './edit-details/edit-details.component';
-import {ActionsModule} from './actions.module';
+
 
 const routes: Routes = [
   {
