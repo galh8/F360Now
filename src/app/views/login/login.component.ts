@@ -38,11 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(form: NgForm) {
-    //
-    localStorage.setItem('user1.first_name','amir');
-    localStorage.setItem('user2.first_name','haim');
-    localStorage.setItem('number_of_users','2');
-
     console.log("ON sumbit function!!");
     console.log(this.user.Email);
     console.log(this.user.Password);
@@ -61,6 +56,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('last_name', this.user.LastName);
             localStorage.setItem('birthday', this.user.Birthday);
             localStorage.setItem('phone_number', this.user.PhoneNumber);
+            localStorage.setItem('email',this.user.Email);
             console.log(data);
             this.router.navigateByUrl('/dashboard');
           }

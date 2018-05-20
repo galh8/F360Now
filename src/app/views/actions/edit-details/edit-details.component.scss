@@ -1,0 +1,36 @@
+body {
+  text-align: center;
+}
+
+.wrap {
+  max-width: 100em;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.cards {
+  margin: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-areas:
+    "a a"
+    "b b";
+}
+
+.card {
+  background-color: #1E88E5;
+  padding: 2em;
+  color: #FFFFFF;
+  line-height: 1.4;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.card1 { grid-area: a; background-color: forestgreen;}
+.card2 { grid-area: b; background-color: darkgreen; }
