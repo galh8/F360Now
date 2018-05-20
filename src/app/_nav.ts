@@ -6,6 +6,20 @@ export const navItems = [
   },
   {
     title: true,
+    name: 'Actions'
+  },
+  {
+    name: 'Add Patient',
+    url: '/actions/add_patient',
+    icon: 'icon-user'
+  },
+  {
+    name: 'Edit Details',
+    url: '/actions/edit_details',
+    icon: 'icon-user'
+  },
+  {
+    title: true,
     name: 'Theme'
   },
   {

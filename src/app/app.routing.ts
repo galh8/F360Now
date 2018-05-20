@@ -9,6 +9,7 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -77,6 +78,10 @@ export const routes: Routes = [
       {
         path: 'theme',
         loadChildren: './views/theme/theme.module#ThemeModule'
+      },
+      {
+        path: 'actions',
+        loadChildren: './views/actions/actions.module#ActionsModule'
       },
       {
         path: 'widgets',

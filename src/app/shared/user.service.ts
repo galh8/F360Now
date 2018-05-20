@@ -29,4 +29,11 @@ export class UserService {
     return this.http.post(this.rootUrl + 'login.php', postData);
   }
 
+  getNewPatients(email: string) {
+    const postData = new FormData();
+    postData.append('therapist_email', email);
+
+    return this.http.post(this.rootUrl + 'get_therapist_requests.php', postData);
+  }
+
 }
