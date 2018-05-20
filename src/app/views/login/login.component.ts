@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
+    localStorage.setItem('user1.first_name','amir');
+    localStorage.setItem('user2.first_name','haim');
+    localStorage.setItem('number_of_users','2');
+    localStorage.setItem('current_patient','amir');
   }
 
   resetForm(form?: NgForm) {
@@ -34,6 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(form: NgForm) {
+    //
+    localStorage.setItem('user1.first_name','amir');
+    localStorage.setItem('user2.first_name','haim');
+    localStorage.setItem('number_of_users','2');
 
     console.log("ON sumbit function!!");
     console.log(this.user.Email);
@@ -53,6 +61,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('last_name', this.user.LastName);
             localStorage.setItem('birthday', this.user.Birthday);
             localStorage.setItem('phone_number', this.user.PhoneNumber);
+            console.log(data);
             this.router.navigateByUrl('/dashboard');
           }
         },

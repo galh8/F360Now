@@ -3,10 +3,6 @@ export const navItems = [
     name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
   },
   {
     title: true,
@@ -121,13 +117,18 @@ export const navItems = [
     icon: 'icon-star',
     children: [
       {
-        name: 'Flags',
-        url: '/icons/flags',
+        name: 'CoreUI Icons',
+        url: '/icons/coreui-icons',
         icon: 'icon-star',
         badge: {
           variant: 'success',
           text: 'NEW'
         }
+      },
+      {
+        name: 'Flags',
+        url: '/icons/flags',
+        icon: 'icon-star'
       },
       {
         name: 'Font Awesome',
@@ -209,18 +210,5 @@ export const navItems = [
         icon: 'icon-star'
       }
     ]
-  },
-  {
-    name: 'Download CoreUI',
-    url: 'http://coreui.io/angular/',
-    icon: 'icon-cloud-download',
-    class: 'mt-auto',
-    variant: 'success'
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'http://coreui.io/pro/angular/',
-    icon: 'icon-layers',
-    variant: 'danger'
   }
 ];

@@ -1,17 +1,33 @@
 import { Component } from '@angular/core';
+import {User} from '../../shared/user.model';
+import {CommonModule} from '@angular/common';
 
 @Component({
   templateUrl: 'chartjs.component.html'
 })
-export class ChartJSComponent {
 
+export class ChartJSComponent {
+  gal: boolean = false;
+
+  users = [
+    {
+      id : 1,
+      name : 'amir'
+    },
+    {
+      id: 2,
+      name: 'haim'
+    }
+  ];
+
+  //TODO import measurements!
   // lineChart
   public lineChartData: Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+    {data: [81, 56, 55, 40], label: 'Weight'},
+    {data: [19, 86, 27, 90], label: 'Body Fat'},
+    {data: [9, 100, 27, 40], label: 'Muscal Mass'}
   ];
-  public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Array<any> = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
   public lineChartOptions: any = {
     animation: false,
     responsive: true
@@ -50,13 +66,13 @@ export class ChartJSComponent {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
   public barChartType = 'bar';
   public barChartLegend = true;
 
   public barChartData: any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
+    {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'}
   ];
 
   // Doughnut

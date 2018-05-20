@@ -5,21 +5,6 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {User} from './user.model';
 
-interface UserResponse {
-  birthdate: string;
-  email: string;
-  first_name: string;
-  has_picture: boolean;
-  last_name: string;
-  phone_number: string;
-}
-
-
-interface UserObject {
-  userRes: UserResponse;
-  error: boolean;
-}
-
 @Injectable()
 export class UserService {
   readonly rootUrl = 'http://grigale.grigale.com/fitness360user_app/';
