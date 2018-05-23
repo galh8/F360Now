@@ -71,4 +71,12 @@ export class UserService {
     return this.http.post(this.rootUrl + 'get_patient_scales.php', postData);
   }
 
+  accecptFollowingRequset(therapistEmail, patientEmail) {
+    const postData = new FormData();
+    postData.append('therapist_email', therapistEmail);
+    postData.append('patient_email', patientEmail);
+
+    return this.http.post(this.rootUrl + 'accept_following_requests.php', postData);
+  }
+
 }

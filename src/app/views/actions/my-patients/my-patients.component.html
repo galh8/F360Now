@@ -1,8 +1,8 @@
 <div class="wrap">
   <div class="cards">
     <div class="card card1">
-      <div class="text" style="align-items: flex-end; size: A4; letter-spacing: 3px; font-size: 55px; text-align: center">
-        My patients
+      <div class="text" style="align-items: flex-end; size: A4; letter-spacing: 3px; font-size: 50px; text-align: center">
+        My Patients
       </div>
     </div>
     <div class="card card2" style="color: black">
@@ -13,32 +13,25 @@
               <table class="table user-list">
                 <thead>
                 <tr>
-                  <th><span style="font-size: 15px">Name</span></th>
-                  <th><span style="font-size: 15px">Age</span></th>
-                  <th><span style="font-size: 15px">Email</span></th>
-                  <th><span style="font-size: 15px">Phone Number</span></th>
-                  <th style="font-size: 15px">&nbsp;</th>
+                  <th><span style="font-size: 20px">Name</span></th>
+                  <th><span style="font-size: 20px">Email</span></th>
+                  <th><span style="font-size: 20px">Phone Number</span></th>
+                  <th><span style="font-size: 20px">Age</span></th>
+                  <th style="font-size: 20px">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>
-                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-                    <a href="#" class="user-link">Full name 1</a>
+                <tr *ngFor="let patient of patients">
+                  <td style="font-size: 20px">
+                    <img [src]="patient.has_picture == 1 ? patient.picture_path : default_picture" alt="">
+                    {{patient.first_name}} {{patient.last_name}}
                     <span class="user-subhead">Patient</span>
                   </td>
-                  <td>2013/08/12</td>
-                  <td>
-                    <a href="#">marlon@brando.com</a>
-                  </td>
+                  <td td style="font-size: 20px">{{patient.patient_email}}</td>
+                  <td td style="font-size: 20px">{{patient.phone_number}}</td>
+                  <td td style="font-size: 20px">{{patient.birthdate}}</td>
                   <td style="width: 20%;">
-                    <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                    </a>
-                    <a href="#" class="table-link danger">
+                    <a href="#" class="table-link danger" alt="Delete Patient">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -52,19 +45,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
   </div>
 </div>
