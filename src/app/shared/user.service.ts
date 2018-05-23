@@ -50,4 +50,25 @@ export class UserService {
     return this.http.post(this.rootUrl + 'get_therapist_requests.php', postData);
   }
 
+  getAllPatients(email: string) {
+    const postData = new FormData();
+    postData.append('therapist_email', email);
+
+    return this.http.post(this.rootUrl + 'get_patients_details_by_therapist.php', postData);
+  }
+
+  getPatientActivity(email: string) {
+    const postData = new FormData();
+    postData.append('patient_email', email);
+
+    return this.http.post(this.rootUrl + 'get_patient_activities.php', postData);
+  }
+
+  getPatientScales(email: string) {
+    const postData = new FormData();
+    postData.append('patient_email', email);
+
+    return this.http.post(this.rootUrl + 'get_patient_scales.php', postData);
+  }
+
 }

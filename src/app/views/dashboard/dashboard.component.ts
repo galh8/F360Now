@@ -45,6 +45,8 @@ export class DashboardComponent implements OnInit{
 
   current_user = this.users[0];
 
+  patients:any;
+
   constructor(private userService: UserService) {}
 
   ngOnInit() {
@@ -62,10 +64,50 @@ export class DashboardComponent implements OnInit{
           console.log(err);
           console.log('at error!');
         });
+    // Get all patients
+    this.userService.getAllPatients(localStorage.getItem('email'))
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            console.log(data);
+            this.patients = data;
+
+            // Get first patient activity
+            this.userService.getPatientActivity(this.patients[0].patient_email)
+              .subscribe((data: any) => {
+                  if (data.error == true) {
+                    alert('Error!');
+                  } else {
+                    console.log(data);
+                  }
+                },
+                err => {
+                  console.log('Error: ' + err.error);
+                });
+
+            // Get first patient scale
+            this.userService.getPatientScales(this.patients[0].patient_email)
+              .subscribe((data: any) => {
+                  if (data.error == true) {
+                    alert('Error!');
+                  } else {
+                    console.log(data);
+                  }
+                },
+                err => {
+                  console.log('Error: ' + err.error);
+                });
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
+
   }
 
   public onSelect(user) {
-    this.current_user = user;
+    this.current_user = user.last_name;
   }
 
   //TODO import measurements!
