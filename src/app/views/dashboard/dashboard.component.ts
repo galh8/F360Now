@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { getStyle, hexToRgba } from '@coreui/coreui/js/src/utilities/';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips/js/';
 import {CommonModule} from '@angular/common';
+import {UserService} from '../../shared/user.service';
+import {Observable} from 'rxjs/Observable';
+
 
 @Component({
   templateUrl: 'dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent{
+export class DashboardComponent implements OnInit{
   trainer_first_name = localStorage.getItem('first_name');
   trainer_last_name = localStorage.getItem('last_name');
+  trainer_institution = '';
+  trainer_starting_year = '';
 
   users = [
     {
@@ -40,6 +44,25 @@ export class DashboardComponent{
   ];
 
   current_user = this.users[0];
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit() {
+
+    this.userService.getInfo(localStorage.getItem('email'))
+      .subscribe((data: any) => {
+          if (data.error == true){
+            console.log('error');
+          } else {
+            console.log(data);
+            this.trainer_institution = data.institution;
+          }
+        },
+        err => {
+          console.log(err);
+          console.log('at error!');
+        });
+  }
 
   public onSelect(user) {
     this.current_user = user;

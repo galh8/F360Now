@@ -14,6 +14,11 @@ export const navItems = [
     icon: 'icon-user'
   },
   {
+    name: 'My Patients',
+    url: '/actions/my_patients',
+    icon: 'icon-user'
+  },
+  {
     name: 'Edit Details',
     url: '/actions/edit_details',
     icon: 'icon-user'

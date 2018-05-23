@@ -30,7 +30,9 @@ export class RegisterComponent implements OnInit {
       PhoneNumber: '',
       FirstName: '',
       LastName: '',
-      Birthday: ''
+      Birthday: '',
+      Institution: '',
+      Starting_year: '',
     };
   }
 

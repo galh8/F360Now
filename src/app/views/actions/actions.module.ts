@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import {ActionsRoutingModule} from './actions-routing.module';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
+import { MyPatientsComponent } from './my-patients/my-patients.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { EditDetailsComponent } from './edit-details/edit-details.component';
   ],
   declarations: [
     AddPatientComponent,
-    EditDetailsComponent
+    EditDetailsComponent,
+    MyPatientsComponent
   ]
 })
 export class ActionsModule { }

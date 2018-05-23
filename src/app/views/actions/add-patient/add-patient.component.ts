@@ -17,7 +17,7 @@ export class AddPatientComponent implements OnInit {
           if (data.error == true) {
             alert('Error!');
           } else {
-            console.log(data);
+            console.log(data[0].first_name);
           }
         },
         err => {
