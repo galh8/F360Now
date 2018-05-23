@@ -79,4 +79,22 @@ export class UserService {
     return this.http.post(this.rootUrl + 'accept_following_requests.php', postData);
   }
 
+  deletePatient(therapistEmail, patientEmail) {
+    const postData = new FormData();
+    postData.append('therapist_email', therapistEmail);
+    postData.append('patient_email', patientEmail);
+
+    return this.http.post(this.rootUrl + 'delete_patient.php', postData);
+  }
+
+  deleteFollowingRequset(therapistEmail, patientEmail) {
+    const postData = new FormData();
+    postData.append('therapist_email', therapistEmail);
+    postData.append('patient_email', patientEmail);
+
+    return this.http.post(this.rootUrl + 'delete_request.php', postData);
+
+  }
+
+
 }

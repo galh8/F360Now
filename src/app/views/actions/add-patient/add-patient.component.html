@@ -24,7 +24,7 @@
                 <tbody>
                 <tr *ngFor="let patient of patients">
                   <td style="font-size: 20px">
-                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
+                    <img [src]="patient.has_picture == 1 ? patient.picture_path : default_picture" alt="">
                     {{patient.first_name}} {{patient.last_name}}
                     <span class="user-subhead">Patient</span>
                   </td>
@@ -36,7 +36,7 @@
                                                 <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
                                             </span>
                     </a>
-                    <a href="#" class="table-link danger">
+                    <a href="#" class="table-link danger" (click)="deleteRequest(patient.patient_email)">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

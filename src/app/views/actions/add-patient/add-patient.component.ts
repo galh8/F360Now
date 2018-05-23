@@ -13,6 +13,9 @@ export class AddPatientComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   patients : any;
+  default_picture = "https://bootdey.com/img/Content/user_1.jpg";
+  grigalePic = "http://grigale.grigale.com/fitness360user_app/user_images/";
+
 
   ngOnInit() {
     this.userService.getNewPatients(localStorage.getItem('email'))
@@ -23,6 +26,12 @@ export class AddPatientComponent implements OnInit {
             console.log(data);
             console.log(data[0].first_name);
             this.patients = data;
+            for (let i = 0; i < data.length; i++) {
+              if (data[i].has_picture == 1) {
+                data[i].picture_path = this.grigalePic.concat(data[i].patient_email);
+                data[i].picture_path = data[i].picture_path.concat('.jpg');
+              }
+            }
           }
         },
         err => {
@@ -33,6 +42,22 @@ export class AddPatientComponent implements OnInit {
   acceptFollowingRequset(patientEmail) {
     console.log('accept function');
     this.userService.accecptFollowingRequset(localStorage.getItem('email'), patientEmail)
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            console.log(data);
+            // this.router.navigateByUrl('/actions/add_patient');
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
+  }
+
+  deleteRequest(patientEmail) {
+
+    this.userService.deleteFollowingRequset(localStorage.getItem('email'), patientEmail)
       .subscribe((data: any) => {
           if (data.error == true) {
             alert('Error!');

@@ -11,7 +11,6 @@ export class MyPatientsComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   patients : any;
-  defulat_picture: string;
   default_picture = "https://bootdey.com/img/Content/user_1.jpg";
   grigalePic = "http://grigale.grigale.com/fitness360user_app/user_images/";
 
@@ -30,9 +29,24 @@ export class MyPatientsComponent implements OnInit {
               if (data[i].has_picture == 1) {
                 data[i].picture_path = this.grigalePic.concat(data[i].patient_email);
                 data[i].picture_path = data[i].picture_path.concat('.jpg');
-                console.log(data[i]);
               }
             }
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
+  }
+
+  deletePatient(patientEmail) {
+
+    this.userService.deletePatient(localStorage.getItem('email'), patientEmail)
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            console.log(data);
+            // this.router.navigateByUrl('/actions/add_patient');
           }
         },
         err => {
