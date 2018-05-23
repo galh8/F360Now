@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit{
   trainer_last_name = localStorage.getItem('last_name');
   trainer_institution = '';
   trainer_starting_year = '';
+  arr_month:string[] = new Array(28);
 
   users = [
     {
@@ -51,10 +52,69 @@ export class DashboardComponent implements OnInit{
 
   numberOfPatients: any;
 
+  calories_charts: any;
+
   constructor(private userService: UserService) {}
 
-  ngOnInit() {
+  // Converts the dates to our format
+  public convertDate(date) {
+    date.setDate(date.getDate());
+    let dd = date.getDate();
+    let mm = date.getMonth() + 1;
 
+    let yyyy = date.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+
+    let today = yyyy + '-' + mm + '-' + dd;
+    return today;
+  }
+
+  // Get dates of the last month
+  public thirtyLastDays() {
+    let j = 0;
+    for (let i = 28; i > 0; i--) {
+      let date = new Date();
+      date.setDate(date.getDate() - i);
+      this.arr_month[j++] = this.convertDate(date);
+    }
+  }
+
+  public caloriesByInterval(data, from, to) {
+    let numberOfDays: number =  0;
+    let calories: number = 0;
+    let activeCalories: number = 0;
+
+    for (let i = from; i < to; i++) {
+      let current_date = this.arr_month[i];
+      for (let j = 0; j < data.length; j++) {
+        if (data[j].date === current_date) {
+          numberOfDays = numberOfDays + 1;
+          calories = calories + data[j].calories;
+          activeCalories = activeCalories + data[j].active_calories;
+          break;
+        }
+      }
+    }
+
+    return [Math.round(calories / numberOfDays), Math.round(activeCalories / numberOfDays)];
+  }
+
+  public calculateWeeklyCalories(data) {
+    let week1 = this.caloriesByInterval(data,0,7);
+    let week2 = this.caloriesByInterval(data,7,14);
+    let week3 = this.caloriesByInterval(data,14,21);
+    let week4 = this.caloriesByInterval(data,21,28);
+
+    return [week1, week2, week3, week4];
+  }
+
+  ngOnInit() {
+    this.thirtyLastDays();
     this.userService.getInfo(localStorage.getItem('email'))
       .subscribe((data: any) => {
           if (data.error == true){
@@ -85,6 +145,8 @@ export class DashboardComponent implements OnInit{
                     alert('Error!');
                   } else {
                     console.log(data);
+                    this.calories_charts = this.calculateWeeklyCalories(data);
+                    console.log(this.calories_charts);
                   }
                 },
                 err => {
@@ -179,5 +241,6 @@ export class DashboardComponent implements OnInit{
   public chartHovered(e: any): void {
     console.log(e);
   }
+
 
 }
