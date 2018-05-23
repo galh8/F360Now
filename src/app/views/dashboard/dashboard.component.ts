@@ -45,7 +45,11 @@ export class DashboardComponent implements OnInit{
 
   current_user = this.users[0];
 
-  patients:any;
+  patient: any;
+
+  patients: any;
+
+  numberOfPatients: any;
 
   constructor(private userService: UserService) {}
 
@@ -72,7 +76,8 @@ export class DashboardComponent implements OnInit{
           } else {
             console.log(data);
             this.patients = data;
-
+            this.patient = this.patients[0];
+            this.numberOfPatients = this.patients.length;
             // Get first patient activity
             this.userService.getPatientActivity(this.patients[0].patient_email)
               .subscribe((data: any) => {
@@ -106,8 +111,8 @@ export class DashboardComponent implements OnInit{
 
   }
 
-  public onSelect(user) {
-    this.current_user = user.last_name;
+  public onSelect(patient) {
+    this.patient = patient;
   }
 
   //TODO import measurements!
