@@ -173,6 +173,8 @@ export class DashboardComponent implements OnInit{
           } else {
             this.patients = data;
             this.patient = this.patients[0];
+            this.current_patient.first_name = this.patient.first_name;
+            this.current_patient.last_name = this.patient.last_name;
             this.numberOfPatients = this.patients.length;
             // Get first patient activity
             this.userService.getPatientActivity(this.patients[0].patient_email)
@@ -194,7 +196,14 @@ export class DashboardComponent implements OnInit{
                   if (data.error == true) {
                     alert('Error!');
                   } else {
-                    console.log(data);
+                    let lastMeasure = data[data.length - 1];
+                    this.current_patient.weight = lastMeasure.weight;
+                    this.current_patient.body_water = lastMeasure.body_water;
+                    this.current_patient.fat_percentage = lastMeasure.fat_percentage;
+                    this.current_patient.mass_weight = lastMeasure.mass_weight;
+                    this.current_patient.metabolic_age = lastMeasure.metabolic_age;
+                    this.current_patient.physique_rating = lastMeasure.physique_rating;
+                    this.current_patient.visceral_fat = lastMeasure.visceral_fat;
                     this.calculateWeeklyMeasurement(data);
                   }
                 },
