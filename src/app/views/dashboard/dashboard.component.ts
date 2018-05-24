@@ -52,8 +52,6 @@ export class DashboardComponent implements OnInit{
 
   numberOfPatients: any;
 
-  calories_charts: any;
-
   constructor(private userService: UserService) {}
 
   // Converts the dates to our format
@@ -110,7 +108,12 @@ export class DashboardComponent implements OnInit{
     let week3 = this.caloriesByInterval(data,14,21);
     let week4 = this.caloriesByInterval(data,21,28);
 
-    return [week1, week2, week3, week4];
+    // return [week1, week2, week3, week4];
+
+    this.barChartData = [
+      {data: [week1[0], week2[0], week3[0], week4[0]], label: 'Total Calories'},
+      {data: [week1[1]  , week2[1], week3[1], week4[1]], label: 'Activity Calories'}
+    ];
   }
 
   ngOnInit() {
@@ -144,9 +147,7 @@ export class DashboardComponent implements OnInit{
                   if (data.error == true) {
                     alert('Error!');
                   } else {
-                    console.log(data);
-                    this.calories_charts = this.calculateWeeklyCalories(data);
-                    console.log(this.calories_charts);
+                  this.calculateWeeklyCalories(data);
                   }
                 },
                 err => {
@@ -228,7 +229,7 @@ export class DashboardComponent implements OnInit{
   public barChartType = 'bar';
   public barChartLegend = true;
 
-  public barChartData: any[] = [
+  barChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
     {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'}
   ];

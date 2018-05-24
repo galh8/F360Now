@@ -15,7 +15,7 @@ export class AddPatientComponent implements OnInit {
   patients : any;
   default_picture = "https://bootdey.com/img/Content/user_1.jpg";
   grigalePic = "http://grigale.grigale.com/fitness360user_app/user_images/";
-
+  haveRequests = false;
 
   ngOnInit() {
     this.userService.getNewPatients(localStorage.getItem('email'))
