@@ -15,36 +15,21 @@ export class DashboardComponent implements OnInit{
   trainer_last_name = localStorage.getItem('last_name');
   trainer_institution = '';
   trainer_starting_year = '';
-  arr_month:string[] = new Array(28);
+  arr_month: string[] = new Array(28);
 
-  users = [
+  current_patient =
     {
-      id : 1,
-      First_name : 'Amir',
-      Last_name : 'Halfon',
-      Weight : 60,
-      Height : 180,
-      Fat : 12,
-      Mass : 60,
-      last_weight : [100, 50, 60, 40],
-      last_fat : [81, 60, 80, 100],
-      last_muscal : [90, 60, 80, 40]
-    },
-    {
-      id : 2,
-      First_name : 'Haim',
-      Last_name : 'Tzadok',
-      Weight : 70,
-      Height : 170,
-      Fat : 16,
-      Mass : 80,
-      last_weight : [81, 56, 55, 40],
-      last_fat : [81, 56, 55, 40],
-      last_muscal : [81, 56, 55, 40]
-    }
-  ];
-
-  current_user = this.users[0];
+      first_name : '',
+      last_name : '',
+      weight : '',
+      height : '',
+      fat_percentage : '',
+      mass_weight : '',
+      visceral_fat : '',
+      physique_rating : '',
+      metabolic_age : '',
+      body_water : ''
+    };
 
   patient: any;
 
