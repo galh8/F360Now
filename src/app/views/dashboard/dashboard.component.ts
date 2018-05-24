@@ -52,6 +52,19 @@ export class DashboardComponent implements OnInit{
 
   numberOfPatients: any;
 
+  barChartData = [
+    {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
+    {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'}
+  ];
+
+  // lineChart
+  lineChartData = [
+    {data: [10000, 9000, 10000, 11000], label: 'Weight'},
+    {data: [10000, 9000, 10000, 11000], label: 'Body Fat'},
+    {data: [10000, 9000, 10000, 11000], label: 'Muscal Mass'}
+  ];
+
+
   constructor(private userService: UserService) {}
 
   // Converts the dates to our format
@@ -116,6 +129,42 @@ export class DashboardComponent implements OnInit{
     ];
   }
 
+  public measurementByInterval(data, from, to) {
+    let numberOfDays: number =  0;
+    let weight: number = 0;
+    let fat_percentage: number = 0;
+    let mass_weight: number = 0;
+
+    for (let i = from; i < to; i++) {
+      let current_date = this.arr_month[i];
+      for (let j = 0; j < data.length; j++) {
+        data[j].date = data[j].measurement_time.split(' ')[0];
+        if (data[j].date === current_date) {
+          numberOfDays = numberOfDays + 1;
+          weight = weight + data[j].weight;
+          fat_percentage = fat_percentage + data[j].fat_percentage;
+          mass_weight = mass_weight + data[j].mass_weight;
+          break;
+        }
+      }
+    }
+
+    return [Math.round(weight / numberOfDays), Math.round(fat_percentage / numberOfDays), Math.round(mass_weight / numberOfDays)];
+  }
+
+  public calculateWeeklyMeasurement(data) {
+    let week1 = this.measurementByInterval(data,0,7);
+    let week2 = this.measurementByInterval(data,7,14);
+    let week3 = this.measurementByInterval(data,14,21);
+    let week4 = this.measurementByInterval(data,21,28);
+
+    this.lineChartData = [
+      {data: [week1[0], week2[0], week3[0], week4[0]], label: 'Weight'},
+      {data: [week1[1], week2[1], week3[1], week4[1]], label: 'Body Fat'},
+      {data: [week1[2], week2[2], week3[2], week4[2]], label: 'Muscal Mass'}
+    ];
+  }
+
   ngOnInit() {
     this.thirtyLastDays();
     this.userService.getInfo(localStorage.getItem('email'))
@@ -123,7 +172,7 @@ export class DashboardComponent implements OnInit{
           if (data.error == true){
             console.log('error');
           } else {
-            console.log(data);
+            // console.log(data);
             this.trainer_institution = data.institution;
           }
         },
@@ -137,7 +186,6 @@ export class DashboardComponent implements OnInit{
           if (data.error == true) {
             alert('Error!');
           } else {
-            console.log(data);
             this.patients = data;
             this.patient = this.patients[0];
             this.numberOfPatients = this.patients.length;
@@ -147,7 +195,8 @@ export class DashboardComponent implements OnInit{
                   if (data.error == true) {
                     alert('Error!');
                   } else {
-                  this.calculateWeeklyCalories(data);
+                    console.log(data);
+                    this.calculateWeeklyCalories(data);
                   }
                 },
                 err => {
@@ -161,6 +210,7 @@ export class DashboardComponent implements OnInit{
                     alert('Error!');
                   } else {
                     console.log(data);
+                    this.calculateWeeklyMeasurement(data);
                   }
                 },
                 err => {
@@ -177,14 +227,6 @@ export class DashboardComponent implements OnInit{
   public onSelect(patient) {
     this.patient = patient;
   }
-
-  //TODO import measurements!
-  // lineChart
-  public lineChartData: Array<any> = [
-    {data: this.current_user.last_weight, label: 'Weight'},
-    {data: this.current_user.last_fat, label: 'Body Fat'},
-    {data: this.current_user.last_muscal, label: 'Muscal Mass'}
-  ];
 
   public lineChartLabels: Array<any> = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
   public lineChartOptions: any = {
@@ -229,18 +271,13 @@ export class DashboardComponent implements OnInit{
   public barChartType = 'bar';
   public barChartLegend = true;
 
-  barChartData = [
-    {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
-    {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'}
-  ];
-
   // events
   public chartClicked(e: any): void {
-    console.log(e);
+    // console.log(e);
   }
 
   public chartHovered(e: any): void {
-    console.log(e);
+    // console.log(e);
   }
 
 
