@@ -1,4 +1,8 @@
-<div class="wrap">
+<div class="alert alert-success" role="alert" *ngIf="showAlert">
+  <h1 class="alert-heading" style="font-weight: bold; text-align: center">You Don't have any patients!</h1>
+</div>
+
+<div class="wrap" *ngIf="havePatients">
   <div class="cards">
     <div class="card card1">
       <div class="text" style="align-items: flex-end; size: A4; letter-spacing: 3px; font-size: 50px; text-align: center">
