@@ -150,6 +150,43 @@ export class DashboardComponent implements OnInit{
     ];
   }
 
+  public updatePatientGraphs(patient_email) {
+    // Get first patient activity
+    this.userService.getPatientActivity(patient_email)
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            console.log(data);
+            this.calculateWeeklyCalories(data);
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
+
+    // Get first patient scale
+    this.userService.getPatientScales(patient_email)
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            let lastMeasure = data[data.length - 1];
+            this.current_patient.weight = lastMeasure.weight;
+            this.current_patient.body_water = lastMeasure.body_water;
+            this.current_patient.fat_percentage = lastMeasure.fat_percentage;
+            this.current_patient.mass_weight = lastMeasure.mass_weight;
+            this.current_patient.metabolic_age = lastMeasure.metabolic_age;
+            this.current_patient.physique_rating = lastMeasure.physique_rating;
+            this.current_patient.visceral_fat = lastMeasure.visceral_fat;
+            this.calculateWeeklyMeasurement(data);
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
+  }
+
   ngOnInit() {
     this.thirtyLastDays();
     this.userService.getInfo(localStorage.getItem('email'))
@@ -176,41 +213,9 @@ export class DashboardComponent implements OnInit{
             this.current_patient.first_name = this.patient.first_name;
             this.current_patient.last_name = this.patient.last_name;
             this.numberOfPatients = this.patients.length;
-            // Get first patient activity
-            this.userService.getPatientActivity(this.patients[0].patient_email)
-              .subscribe((data: any) => {
-                  if (data.error == true) {
-                    alert('Error!');
-                  } else {
-                    console.log(data);
-                    this.calculateWeeklyCalories(data);
-                  }
-                },
-                err => {
-                  console.log('Error: ' + err.error);
-                });
-
-            // Get first patient scale
-            this.userService.getPatientScales(this.patients[0].patient_email)
-              .subscribe((data: any) => {
-                  if (data.error == true) {
-                    alert('Error!');
-                  } else {
-                    let lastMeasure = data[data.length - 1];
-                    this.current_patient.weight = lastMeasure.weight;
-                    this.current_patient.body_water = lastMeasure.body_water;
-                    this.current_patient.fat_percentage = lastMeasure.fat_percentage;
-                    this.current_patient.mass_weight = lastMeasure.mass_weight;
-                    this.current_patient.metabolic_age = lastMeasure.metabolic_age;
-                    this.current_patient.physique_rating = lastMeasure.physique_rating;
-                    this.current_patient.visceral_fat = lastMeasure.visceral_fat;
-                    this.calculateWeeklyMeasurement(data);
-                  }
-                },
-                err => {
-                  console.log('Error: ' + err.error);
-                });
-          }
+            this.updatePatientGraphs(this.patients[0].patient_email);
+            //this.patients[0].patient_email
+           }
         },
         err => {
           console.log('Error: ' + err.error);
@@ -220,6 +225,9 @@ export class DashboardComponent implements OnInit{
 
   public onSelect(patient) {
     this.patient = patient;
+    this.current_patient.first_name = this.patient.first_name;
+    this.current_patient.last_name = this.patient.last_name;
+    this.updatePatientGraphs(this.patient.patient_email);
   }
 
   public lineChartLabels: Array<any> = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
