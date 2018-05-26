@@ -39,7 +39,8 @@ export class DashboardComponent implements OnInit{
 
   barChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
-    {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'}
+    {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'},
+    {data: [2400, 2700, 4000, 6000], label: 'Steps'}
   ];
 
   // lineChart
@@ -84,6 +85,7 @@ export class DashboardComponent implements OnInit{
     let numberOfDays: number =  0;
     let calories: number = 0;
     let activeCalories: number = 0;
+    let steps: number = 0;
 
     for (let i = from; i < to; i++) {
       let current_date = this.arr_month[i];
@@ -92,12 +94,13 @@ export class DashboardComponent implements OnInit{
           numberOfDays = numberOfDays + 1;
           calories = calories + data[j].calories;
           activeCalories = activeCalories + data[j].active_calories;
+          steps = steps + data[j].steps;
           break;
         }
       }
     }
 
-    return [Math.round(calories / numberOfDays), Math.round(activeCalories / numberOfDays)];
+    return [Math.round(calories / numberOfDays), Math.round(activeCalories / numberOfDays), Math.round(steps / numberOfDays)];
   }
 
   public calculateWeeklyCalories(data) {
@@ -110,7 +113,8 @@ export class DashboardComponent implements OnInit{
 
     this.barChartData = [
       {data: [week1[0], week2[0], week3[0], week4[0]], label: 'Total Calories'},
-      {data: [week1[1]  , week2[1], week3[1], week4[1]], label: 'Activity Calories'}
+      {data: [week1[1]  , week2[1], week3[1], week4[1]], label: 'Activity Calories'},
+      {data: [week1[2]  , week2[2], week3[2], week4[2]], label: 'Steps'}
     ];
   }
 

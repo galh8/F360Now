@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { navItems } from './../../_nav';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,14 +10,7 @@ export class DefaultLayoutComponent implements OnInit{
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement = document.body;
-  userPicture: any;
-
-  public constructor(private router: Router) {}
-
-  ngOnInit() {
-    this.userPicture = localStorage.getItem('picture');
-    console.log(this.userPicture);
-  }
+  public userPicture = "http://grigale.grigale.com/fitness360user_app/user_images/";
 
   constructor() {
 
@@ -29,5 +21,10 @@ export class DefaultLayoutComponent implements OnInit{
     this.changes.observe(<Element>this.element, {
       attributes: true
     });
+  }
+
+  ngOnInit() {
+    this.userPicture = localStorage.getItem('picture');
+    console.log(this.userPicture);
   }
 }
