@@ -23,8 +23,6 @@ export class MyPatientsComponent implements OnInit {
           if (data.error == true) {
             alert('Error!');
           } else {
-            console.log(data);
-            console.log(data[0].first_name);
             this.patients = data;
             if (this.patients.length > 0) {
               for (let i = 0; i < data.length; i++) {

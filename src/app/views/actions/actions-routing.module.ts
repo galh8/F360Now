@@ -23,7 +23,7 @@ const routes: Routes = [
         path: 'my_patients',
         component: MyPatientsComponent,
         data: {
-          title: 'my Patients'
+          title: 'My Patients'
         }
       },
       {
