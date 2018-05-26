@@ -209,12 +209,12 @@ export class DashboardComponent implements OnInit{
             alert('Error!');
           } else {
             this.patients = data;
+            // Initialize the data fot the first patient
             this.patient = this.patients[0];
             this.current_patient.first_name = this.patient.first_name;
             this.current_patient.last_name = this.patient.last_name;
             this.numberOfPatients = this.patients.length;
             this.updatePatientGraphs(this.patients[0].patient_email);
-            //this.patients[0].patient_email
            }
         },
         err => {

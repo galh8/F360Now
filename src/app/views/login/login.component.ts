@@ -11,15 +11,13 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: User;
+  default_picture = "https://bootdey.com/img/Content/user_1.jpg";
+  grigalePic = "http://grigale.grigale.com/fitness360user_app/user_images/";
 
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {
     this.resetForm();
-    localStorage.setItem('user1.first_name','amir');
-    localStorage.setItem('user2.first_name','haim');
-    localStorage.setItem('number_of_users','2');
-    localStorage.setItem('current_patient','amir');
   }
 
   resetForm(form?: NgForm) {
@@ -41,10 +39,6 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(form: NgForm) {
-    console.log("ON sumbit function!!");
-    console.log(this.user.Email);
-    console.log(this.user.Password);
-
     this.userService.loginUser(this.user.Email,this.user.Password)
       .subscribe((data: any) => {
           if (data.error == true){
@@ -60,7 +54,13 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('birthday', this.user.Birthday);
             localStorage.setItem('phone_number', this.user.PhoneNumber);
             localStorage.setItem('email',this.user.Email);
-            console.log(data);
+            if (data.user.has_picture == true) {
+              let user_pic = this.grigalePic.concat(localStorage.getItem('email'));
+              user_pic = user_pic.concat('.jpg');
+              localStorage.setItem('picture',user_pic);
+            } else {
+              localStorage.setItem('picture',this.default_picture);
+            }
             this.router.navigateByUrl('/dashboard');
           }
         },
