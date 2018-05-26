@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
+    localStorage.clear();
   }
 
   resetForm(form?: NgForm) {

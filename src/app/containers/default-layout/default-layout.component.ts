@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { navItems } from './../../_nav';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,8 @@ export class DefaultLayoutComponent implements OnInit{
   private changes: MutationObserver;
   public element: HTMLElement = document.body;
   userPicture: any;
+
+  public constructor(private router: Router) {}
 
   ngOnInit() {
     this.userPicture = localStorage.getItem('picture');
