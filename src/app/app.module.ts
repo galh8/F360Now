@@ -42,6 +42,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {UserService} from './shared/user.service';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {AuthGuard} from './auth/auth.guard';
 
 @NgModule({
   imports: [
@@ -67,7 +68,7 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [
+  providers: [AuthGuard,
   UserService, {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
