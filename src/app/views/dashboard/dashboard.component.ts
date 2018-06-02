@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/js/src/utilities/';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips/js/';
 import {CommonModule} from '@angular/common';
 import {UserService} from '../../shared/user.service';
 import {Observable} from 'rxjs/Observable';
+import {BaseChartDirective} from 'ng2-charts';
 
 
 @Component({
@@ -50,6 +51,7 @@ export class DashboardComponent implements OnInit{
     {data: [10000, 9000, 10000, 11000], label: 'Muscal Mass'}
   ];
 
+  lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   constructor(private userService: UserService) {}
 
@@ -118,6 +120,40 @@ export class DashboardComponent implements OnInit{
     ];
   }
 
+  public calculateMonthlyCalories(data, from, to) {
+    let weight = [];
+    let body_fat = [];
+    let muscle_mass = [];
+    let dates = [];
+
+    for (let i = from; i < to; i++) {
+      let current_date = this.arr_month[i];
+      for (let j = 0; j < data.length; j++) {
+        if (data[j].date === current_date) {
+          dates.push(current_date);
+          weight.push(data[j].weight);
+          body_fat.push(data[j].fat_percentage);
+          muscle_mass.push(data[j].mass_weight);
+        }
+      }
+    }
+
+    console.log(dates);
+
+    this.lineChartLabels.length = 0;
+    for (let i = 0; i < dates.length; i++) {
+      this.lineChartLabels.push(dates[i]);
+    }
+
+    this.lineChartData = [
+      {data: weight, label: 'Weight'},
+      {data: body_fat, label: 'Body Fat'},
+      {data: muscle_mass, label: 'Muscal Mass'},
+    ];
+
+
+  }
+
   public measurementByInterval(data, from, to) {
     let numberOfDays: number =  0;
     let weight: number = 0;
@@ -184,6 +220,7 @@ export class DashboardComponent implements OnInit{
             this.current_patient.physique_rating = lastMeasure.physique_rating;
             this.current_patient.visceral_fat = lastMeasure.visceral_fat;
             this.calculateWeeklyMeasurement(data);
+            this.calculateMonthlyCalories(data, 0, 28);
           }
         },
         err => {
@@ -234,37 +271,37 @@ export class DashboardComponent implements OnInit{
     this.updatePatientGraphs(this.patient.patient_email);
   }
 
-  public lineChartLabels: Array<any> = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
+
   public lineChartOptions: any = {
     animation: false,
     responsive: true
   };
-  public lineChartColours: Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
+  // public lineChartColours: Array<any> = [
+  //   { // grey
+  //     backgroundColor: 'rgba(148,159,177,0.2)',
+  //     borderColor: 'rgba(148,159,177,1)',
+  //     pointBackgroundColor: 'rgba(148,159,177,1)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  //   },
+  //   { // dark grey
+  //     backgroundColor: 'rgba(77,83,96,0.2)',
+  //     borderColor: 'rgba(77,83,96,1)',
+  //     pointBackgroundColor: 'rgba(77,83,96,1)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(77,83,96,1)'
+  //   },
+  //   { // grey
+  //     backgroundColor: 'rgba(148,159,177,0.2)',
+  //     borderColor: 'rgba(148,159,177,1)',
+  //     pointBackgroundColor: 'rgba(148,159,177,1)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  //   }
+  // ];
   public lineChartLegend = true;
   public lineChartType = 'line';
 

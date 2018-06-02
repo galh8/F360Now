@@ -12,13 +12,13 @@ body {
   margin: 10px;
   padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
   grid-template-areas:
-    "a a a b c"
-    "d e e e e"
-    "d g g f f"
-    "d g g f f";
+    "a a a b b c"
+    "d e e e e e"
+    "g g g f f f";
+
 }
 
 .card {
