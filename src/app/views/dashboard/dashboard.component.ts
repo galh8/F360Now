@@ -42,6 +42,21 @@ export class DashboardComponent implements OnInit{
 
   caloriesIncomeData: any;
 
+  lastMeasure: any;
+  beforeLastMeasure: any;
+  dateOfLastMeasure: any;
+
+  weightStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+  waterStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+  massStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+  visceralStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+  ageStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+  fatStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+  physiqueStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+
+  up = "http://grigale.grigale.com/fitness360user_app/happy.png";
+  down = "http://grigale.grigale.com/fitness360user_app/sad.png";
+
   barChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
     {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'},
@@ -204,6 +219,7 @@ export class DashboardComponent implements OnInit{
 
   public updatePatientGraphs(patient_email) {
     // Get first patient activity
+    this.initializeMeasureStatus();
     this.userService.getPatientActivity(patient_email)
       .subscribe((data: any) => {
           if (data.error == true) {
@@ -223,16 +239,19 @@ export class DashboardComponent implements OnInit{
           if (data.error == true) {
             alert('Error!');
           } else {
-            let lastMeasure = data[0];
-            this.current_patient.weight = lastMeasure.weight;
-            this.current_patient.body_water = lastMeasure.body_water;
-            this.current_patient.fat_percentage = lastMeasure.fat_percentage;
-            this.current_patient.mass_weight = lastMeasure.mass_weight;
-            this.current_patient.metabolic_age = lastMeasure.metabolic_age;
-            this.current_patient.physique_rating = lastMeasure.physique_rating;
-            this.current_patient.visceral_fat = lastMeasure.visceral_fat;
+            this.lastMeasure = data[0];
+            this.beforeLastMeasure = data[1];
+            this.current_patient.weight = this.lastMeasure.weight;
+            this.current_patient.body_water = this.lastMeasure.body_water;
+            this.current_patient.fat_percentage = this.lastMeasure.fat_percentage;
+            this.current_patient.mass_weight = this.lastMeasure.mass_weight;
+            this.current_patient.metabolic_age = this.lastMeasure.metabolic_age;
+            this.current_patient.physique_rating = this.lastMeasure.physique_rating;
+            this.current_patient.visceral_fat = this.lastMeasure.visceral_fat;
             this.calculateWeeklyMeasurement(data);
             this.calculateMonthlyCalories(data, 0, 28);
+            this.updateStatus(this.lastMeasure,this.beforeLastMeasure);
+            this.dateOfLastMeasure = this.lastMeasure.measurement_time;
           }
         },
         err => {
@@ -276,6 +295,62 @@ export class DashboardComponent implements OnInit{
 
   }
 
+  public updateStatus(newMeasure, lastMeasure) {
+    if (newMeasure.weight > lastMeasure.weight) {
+      this.weightStatus = this.up;
+    } else if (newMeasure.weight < lastMeasure.weight) {
+      this.weightStatus = this.down;
+    }
+
+    if (newMeasure.visceral_fat > lastMeasure.visceral_fat) {
+      this.visceralStatus = this.up;
+    } else if (newMeasure.visceral_fat < lastMeasure.visceral_fat) {
+      this.visceralStatus = this.down;
+    }
+
+    if (newMeasure.fat_percentage > lastMeasure.fat_percentage) {
+      this.fatStatus = this.up;
+    } else if (newMeasure.fat_percentage < lastMeasure.fat_percentage) {
+      this.fatStatus = this.down;
+    }
+
+    if (newMeasure.body_water > lastMeasure.body_water) {
+      this.waterStatus = this.up;
+    } else if (newMeasure.body_water < lastMeasure.body_water) {
+      this.waterStatus = this.down;
+    }
+
+    if (newMeasure.mass_weight > lastMeasure.mass_weight) {
+      this.massStatus = this.up;
+    } else if (newMeasure.mass_weight < lastMeasure.mass_weight) {
+      this.massStatus = this.down;
+    }
+
+    if (newMeasure.metabolic_age > lastMeasure.metabolic_age) {
+      this.ageStatus = this.up;
+    } else if (newMeasure.metabolic_age < lastMeasure.metabolic_age) {
+      this.ageStatus = this.down;
+    }
+
+    if (newMeasure.physique_rating > lastMeasure.physique_rating) {
+      this.ageStatus = this.up;
+    } else if (newMeasure.physique_rating < lastMeasure.physique_rating) {
+      this.ageStatus = this.down;
+    }
+
+  }
+
+  public initializeMeasureStatus() {
+    this.weightStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+    this.waterStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+    this.massStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+    this.visceralStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+    this.ageStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+    this.fatStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+    this.physiqueStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+
+  }
+
   public onSelect(patient) {
     this.patient = patient;
     this.current_patient.first_name = this.patient.first_name;
@@ -295,32 +370,32 @@ export class DashboardComponent implements OnInit{
     animation: false,
     responsive: true
   };
-  // public lineChartColours: Array<any> = [
-  //   { // grey
-  //     backgroundColor: 'rgba(148,159,177,0.2)',
-  //     borderColor: 'rgba(148,159,177,1)',
-  //     pointBackgroundColor: 'rgba(148,159,177,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-  //   },
-  //   { // dark grey
-  //     backgroundColor: 'rgba(77,83,96,0.2)',
-  //     borderColor: 'rgba(77,83,96,1)',
-  //     pointBackgroundColor: 'rgba(77,83,96,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(77,83,96,1)'
-  //   },
-  //   { // grey
-  //     backgroundColor: 'rgba(148,159,177,0.2)',
-  //     borderColor: 'rgba(148,159,177,1)',
-  //     pointBackgroundColor: 'rgba(148,159,177,1)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-  //   }
-  // ];
+  public lineChartColours: Array<any> = [
+    { // green
+      backgroundColor: 'rgba(119, 137, 16, 0.2)',
+      borderColor: 'rgba(119, 137, 16, 1)',
+      pointBackgroundColor: 'rgba(119, 137, 16, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(119, 137, 16, 0.8)'
+    },
+    { // blue
+      backgroundColor: 'rgba(71, 148, 167, 0.2)',
+      borderColor: 'rgba(71, 148, 167, 1)',
+      pointBackgroundColor: 'rgba(71, 148, 167, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(71, 148, 167, 0.8)'
+    },
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
   public lineChartLegend = true;
   public lineChartType = 'line';
 
@@ -332,6 +407,34 @@ export class DashboardComponent implements OnInit{
   public barChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
   public barChartType = 'bar';
   public barChartLegend = true;
+
+
+  public barChartColours: Array<any> = [
+    { // green
+      backgroundColor: 'rgba(119, 137, 16, 0.8)',
+      borderColor: 'rgba(119, 137, 16, 1)',
+      pointBackgroundColor: 'rgba(119, 137, 16, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(119, 137, 16, 1)'
+    },
+    { // blue
+      backgroundColor: 'rgba(71, 148, 167, 0.8)',
+      borderColor: 'rgba(71, 148, 167, 1)',
+      pointBackgroundColor: 'rgba(71, 148, 167, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(71, 148, 167, 0.8)'
+    },
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.8)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
 
   // events
   public chartClicked(e: any): void {

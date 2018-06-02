@@ -266,36 +266,38 @@
          <option *ngFor="let patient of patients" (click)="onSelect(patient)">{{patient.first_name}} {{patient.last_name}}</option>
       </select>
     </div>
-    <div class="card card5">
+    <div class="card card5" style="color: black">
       <div class="row">
-        <h2 style="font-weight: bold; color: black">{{current_patient.first_name}} {{current_patient.last_name}}</h2>
+        <span style="font-weight: bold; color: black; font-size: 30px">{{current_patient.first_name}} {{current_patient.last_name}}</span>
       </div>
+      <div class="row"><span style="font-size: 10px; text-align: left">
+        up to: {{dateOfLastMeasure}}</span></div>
       <div class="row">
         <div class="col">
-          <h5>Height = {{current_patient.height}}</h5>
+          <span class="text" style="font-size: 20px; text-decoration: underline">Height:</span><span style="font-size: 15px"></span>
         </div>
         <div class="col">
-          <h5>Weight = {{current_patient.weight}}</h5>
+          <span style="font-size: 20px"><img [src]="weightStatus" style="height: 20px; width: 5px"></span><span class="text" style="font-size: 20px; text-decoration: underline">Weight:</span><span style="font-size: 15px"> {{current_patient.weight}}</span>
         </div>
         <div class="col">
-          <h5>Visceral fat = {{current_patient.visceral_fat}}</h5>
+          <span style="font-size: 20px"><img [src]="visceralStatus" style="height: 20px; width: 5px"></span><span class="text" style="font-size: 20px; text-decoration: underline">Visceral Fat </span><span style="font-size: 15px"> {{current_patient.visceral_fat}}</span>
         </div>
         <div class="col">
-          <h5>Fat Percentage = {{current_patient.fat_percentage}}</h5>
+          <span style="font-size: 20px"><img [src]="fatStatus" style="height: 20px; width: 5px"></span><span class="text" style="font-size: 20px; text-decoration: underline">Body Fat:</span><span> {{current_patient.fat_percentage}}</span>
         </div>
       </div>
       <div class="row" style="margin-top: 25px">
         <div class="col">
-          <h5>Body Water = {{current_patient.body_water}}</h5>
+          <span style="font-size: 20px"><img [src]="waterStatus" style="height: 20px; width: 5px"></span><span class="text" style="font-size: 20px; text-decoration: underline">Body Water:</span><span> {{current_patient.body_water}}</span>
         </div>
         <div class="col">
-          <h5>Mass = {{current_patient.mass_weight}}</h5>
+          <span style="font-size: 20px"><img [src]="massStatus" style="height: 20px; width: 5px"></span><span class="text" style="font-size: 20px; text-decoration: underline">Muscle Mass:</span><span> {{current_patient.mass_weight}}</span>
         </div>
         <div class="col">
-          <h5>Metabolic Age = {{current_patient.metabolic_age}}</h5>
+          <span style="font-size: 20px"><img [src]="ageStatus" style="height: 20px; width: 5px"></span><span class="text" style="font-size: 20px; text-decoration: underline">Metabolic Age:</span><span> {{current_patient.metabolic_age}}</span>
         </div>
         <div class="col">
-          <h5>Physique Rating = {{current_patient.physique_rating}}</h5>
+          <span style="font-size: 20px"><img [src]="physiqueStatus" style="height: 20px; width: 5px"></span><span class="text" style="font-size: 20px; text-decoration: underline">Physique Status:</span><span> {{current_patient.physique_rating}}</span>
         </div>
       </div>
     </div>
@@ -313,6 +315,7 @@
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
+            [colors]="barChartColours"
             [legend]="barChartLegend"
             [chartType]="barChartType"
             (chartHover)="chartHovered($event)"
