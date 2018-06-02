@@ -259,24 +259,16 @@
       </div>
     </div>
     <div class="card card4">
-      <div class="text" style="font-size: 35px; letter-spacing: 3px; font-weight: bold; padding-bottom: 15px">
+      <div class="text" style="font-size: 25px; letter-spacing: 3px; font-weight: bold; padding-bottom: 15px">
         Your patients
       </div>
-      <div class="list-group">
-      <a
-      href="#"
-      class="list-group-item"
-      *ngFor="let patient of patients">
-      <div (click)="onSelect(patient)">{{ patient.first_name }} {{patient.last_name}}</div>
-      </a>
-      </div>
+       <select>
+         <option *ngFor="let patient of patients" (click)="onSelect(patient)">{{patient.first_name}} {{patient.last_name}}</option>
+      </select>
     </div>
     <div class="card card5">
       <div class="row">
-        <h1 style="font-weight: bold; color: black">{{current_patient.first_name}} {{current_patient.last_name}}</h1>
-      </div>
-      <div class="row">
-        <h4 style="font-weight: bold; margin-bottom: 15px; color: black">Measurments</h4>
+        <h2 style="font-weight: bold; color: black">{{current_patient.first_name}} {{current_patient.last_name}}</h2>
       </div>
       <div class="row">
         <div class="col">
