@@ -9,8 +9,8 @@ export const navItems = [
     name: 'Actions'
   },
   {
-    name: 'Add Patient',
-    url: '/actions/add_patient',
+    name: 'Pending Requests',
+    url: '/actions/pending_requests',
     icon: 'icon-user'
   },
   {

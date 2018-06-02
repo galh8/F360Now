@@ -13,10 +13,10 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'add_patient',
+        path: 'pending_requests',
         component: AddPatientComponent,
         data: {
-          title: 'Add Patient'
+          title: 'Pending Requests'
         }
       },
       {
