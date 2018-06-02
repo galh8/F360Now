@@ -301,7 +301,12 @@
     </div>
     <div class="card card6">
       <div class="card-header" style="background-color: white">
-        <h5 style="color: black">Calories Burnt</h5>
+        <h5 style="color: black">Calories Charts&nbsp;&nbsp;&nbsp;&nbsp;
+        <select>
+          <option (click)="onChangeCaloriesCharts(1)">Calories burnt</option>
+          <option (click)="onChangeCaloriesCharts(2)">Income Calories</option>
+        </select>
+        </h5>
       </div>
 
           <canvas baseChart class="chart"
@@ -316,8 +321,10 @@
 
     </div>
     <div class="card card7">
+      <div class="col">
       <div class="card-header" style="background-color: white">
         <h5 style="color: black"> Body Measurements - 28 Last days</h5>
+        <br>
       </div>
       <div class="card-body">
       <div class="chart-wrapper">
@@ -335,6 +342,7 @@
 
 
     </div>
+
   </div>
 </div>
 </div>
