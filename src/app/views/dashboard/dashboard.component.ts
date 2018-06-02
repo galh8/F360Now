@@ -38,6 +38,10 @@ export class DashboardComponent implements OnInit{
 
   numberOfPatients: any;
 
+  caloriesBurntData: any;
+
+  caloriesIncomeData: any;
+
   barChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
     {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'},
@@ -105,7 +109,7 @@ export class DashboardComponent implements OnInit{
     return [Math.round(calories / numberOfDays), Math.round(activeCalories / numberOfDays), Math.round(steps / numberOfDays)];
   }
 
-  public calculateWeeklyCalories(data) {
+  public calculateWeeklyCaloriesBurnt(data) {
     let week1 = this.caloriesByInterval(data,0,7);
     let week2 = this.caloriesByInterval(data,7,14);
     let week3 = this.caloriesByInterval(data,14,21);
@@ -117,6 +121,14 @@ export class DashboardComponent implements OnInit{
       {data: [week1[0], week2[0], week3[0], week4[0]], label: 'Total Calories'},
       {data: [week1[1]  , week2[1], week3[1], week4[1]], label: 'Activity Calories'},
       {data: [week1[2]  , week2[2], week3[2], week4[2]], label: 'Steps'}
+    ];
+  }
+
+  calculateIncomeCalories(data) {
+    this.barChartData = [
+      {data: [1,2,3,4], label: 'Total Calories'},
+      {data: [1,2,3,4], label: 'Activity Calories'},
+      {data: [1,2,3,4], label: 'Steps'}
     ];
   }
 
@@ -197,8 +209,8 @@ export class DashboardComponent implements OnInit{
           if (data.error == true) {
             alert('Error!');
           } else {
-            console.log(data);
-            this.calculateWeeklyCalories(data);
+            this.caloriesBurntData = data;
+            this.calculateWeeklyCaloriesBurnt(data);
           }
         },
         err => {
@@ -211,7 +223,7 @@ export class DashboardComponent implements OnInit{
           if (data.error == true) {
             alert('Error!');
           } else {
-            let lastMeasure = data[data.length - 1];
+            let lastMeasure = data[0];
             this.current_patient.weight = lastMeasure.weight;
             this.current_patient.body_water = lastMeasure.body_water;
             this.current_patient.fat_percentage = lastMeasure.fat_percentage;
@@ -271,6 +283,13 @@ export class DashboardComponent implements OnInit{
     this.updatePatientGraphs(this.patient.patient_email);
   }
 
+  onChangeCaloriesCharts(chartNum) {
+      if (chartNum == 1) {
+        this.calculateWeeklyCaloriesBurnt(this.caloriesBurntData);
+      } else{
+        this.calculateIncomeCalories(this.caloriesBurntData);
+      }
+  }
 
   public lineChartOptions: any = {
     animation: false,
