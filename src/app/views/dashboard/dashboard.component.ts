@@ -344,7 +344,6 @@ export class DashboardComponent implements OnInit{
   }
 
   public initializeMeasureStatus() {
-<<<<<<< HEAD
     this.weightStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
     this.waterStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
     this.massStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
@@ -352,16 +351,6 @@ export class DashboardComponent implements OnInit{
     this.ageStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
     this.fatStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
     this.physiqueStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
-=======
-    this.weightStatus = '';
-    this.waterStatus = '';
-    this.massStatus = '';
-    this.visceralStatus = '';
-    this.ageStatus = '';
-    this.fatStatus = '';
-    this.physiqueStatus = '';
->>>>>>> c79b11bf9aeb8869056d3ee58d44a77826f21925
-
   }
 
   public initializeDaytime() {
