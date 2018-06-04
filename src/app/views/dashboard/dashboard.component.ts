@@ -46,16 +46,13 @@ export class DashboardComponent implements OnInit{
   beforeLastMeasure: any;
   dateOfLastMeasure: any;
 
-  weightStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-  waterStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-  massStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-  visceralStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-  ageStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-  fatStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-  physiqueStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-
-  up = "http://grigale.grigale.com/fitness360user_app/happy.png";
-  down = "http://grigale.grigale.com/fitness360user_app/sad.png";
+  weightStatus = '';
+  waterStatus = '';
+  massStatus = '';
+  visceralStatus = '';
+  ageStatus = '';
+  fatStatus = '';
+  physiqueStatus = '';
 
   barChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
@@ -296,58 +293,63 @@ export class DashboardComponent implements OnInit{
   }
 
   public updateStatus(newMeasure, lastMeasure) {
+    let greenDown = "http://grigale.grigale.com/fitness360user_app/Arrows2/greendown.png";
+    let greenUp = "http://grigale.grigale.com/fitness360user_app/Arrows2/greenup.png";
+    let redUp = "http://grigale.grigale.com/fitness360user_app/Arrows2/redup.png";
+    let redDown = "http://grigale.grigale.com/fitness360user_app/Arrows2/reddown.png";
+
     if (newMeasure.weight > lastMeasure.weight) {
-      this.weightStatus = this.up;
+      this.weightStatus = redUp;
     } else if (newMeasure.weight < lastMeasure.weight) {
-      this.weightStatus = this.down;
+      this.weightStatus = greenDown;
     }
 
     if (newMeasure.visceral_fat > lastMeasure.visceral_fat) {
-      this.visceralStatus = this.up;
+      this.visceralStatus = redUp;
     } else if (newMeasure.visceral_fat < lastMeasure.visceral_fat) {
-      this.visceralStatus = this.down;
+      this.visceralStatus = greenDown;
     }
 
     if (newMeasure.fat_percentage > lastMeasure.fat_percentage) {
-      this.fatStatus = this.up;
+      this.fatStatus = redUp;
     } else if (newMeasure.fat_percentage < lastMeasure.fat_percentage) {
-      this.fatStatus = this.down;
+      this.fatStatus = greenDown;
     }
 
     if (newMeasure.body_water > lastMeasure.body_water) {
-      this.waterStatus = this.up;
+      this.waterStatus = greenUp;
     } else if (newMeasure.body_water < lastMeasure.body_water) {
-      this.waterStatus = this.down;
+      this.waterStatus = redDown;
     }
 
     if (newMeasure.mass_weight > lastMeasure.mass_weight) {
-      this.massStatus = this.up;
+      this.massStatus = greenUp;
     } else if (newMeasure.mass_weight < lastMeasure.mass_weight) {
-      this.massStatus = this.down;
+      this.massStatus = redDown;
     }
 
     if (newMeasure.metabolic_age > lastMeasure.metabolic_age) {
-      this.ageStatus = this.up;
+      this.ageStatus = redUp;
     } else if (newMeasure.metabolic_age < lastMeasure.metabolic_age) {
-      this.ageStatus = this.down;
+      this.ageStatus = greenDown;
     }
 
     if (newMeasure.physique_rating > lastMeasure.physique_rating) {
-      this.ageStatus = this.up;
+      this.ageStatus = greenUp;
     } else if (newMeasure.physique_rating < lastMeasure.physique_rating) {
-      this.ageStatus = this.down;
+      this.ageStatus = redDown;
     }
 
   }
 
   public initializeMeasureStatus() {
-    this.weightStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-    this.waterStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-    this.massStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-    this.visceralStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-    this.ageStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-    this.fatStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
-    this.physiqueStatus = "http://grigale.grigale.com/fitness360user_app/regular.png";
+    this.weightStatus = '';
+    this.waterStatus = '';
+    this.massStatus = '';
+    this.visceralStatus = '';
+    this.ageStatus = '';
+    this.fatStatus = '';
+    this.physiqueStatus = '';
 
   }
 
