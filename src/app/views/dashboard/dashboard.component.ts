@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import {BaseChartDirective} from 'ng2-charts';
 
 
+
 @Component({
   templateUrl: 'dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
@@ -183,7 +184,7 @@ export class DashboardComponent implements OnInit{
     let weight: number = 0;
     let fat_percentage: number = 0;
     let mass_weight: number = 0;
-    console.log(data);
+    // console.log(data);
     for (let i = from; i < to; i++) {
       let current_date = this.arr_month[i];
       for (let j = 0; j < data.length; j++) {
@@ -356,7 +357,7 @@ export class DashboardComponent implements OnInit{
   public initializeDaytime() {
     let d = new Date();
     let n = d.getHours();
-    if (n > 21) {
+    if ((n > 21)  ||  (n < 5)){
       this.dayTime = "Good night,";
     } else if (n > 17) {
       this.dayTime = "Good evening,";
@@ -366,6 +367,8 @@ export class DashboardComponent implements OnInit{
   }
 
   public onSelect(patient) {
+    console.log('gal');
+    console.log(patient);
     this.patient = patient;
     this.current_patient.first_name = this.patient.first_name;
     this.current_patient.last_name = this.patient.last_name;
@@ -373,6 +376,7 @@ export class DashboardComponent implements OnInit{
   }
 
   onChangeCaloriesCharts(chartNum) {
+      console.log('in on calories');
       if (chartNum == 1) {
         this.calculateWeeklyCaloriesBurnt(this.caloriesBurntData);
       } else{

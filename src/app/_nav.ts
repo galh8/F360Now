@@ -11,7 +11,7 @@ export const navItems = [
   {
     name: 'Pending Requests',
     url: '/actions/pending_requests',
-    icon: 'icon-user'
+    icon: 'icon-user-follow'
   },
   {
     name: 'My Patients',
@@ -19,9 +19,9 @@ export const navItems = [
     icon: 'icon-user'
   },
   {
-    name: 'Edit Details',
-    url: '/actions/edit_details',
-    icon: 'icon-user'
+    name: 'Patients Meals',
+    url: '/actions/patients_meals_images',
+    icon: 'icon-energy'
   }
   // {
   //   title: false,

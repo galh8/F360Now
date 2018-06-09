@@ -8,6 +8,7 @@ import {ActionsRoutingModule} from './actions-routing.module';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { MyPatientsComponent } from './my-patients/my-patients.component';
+import { PatientsMealsComponent } from './patients-meals/patients-meals.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { MyPatientsComponent } from './my-patients/my-patients.component';
   declarations: [
     AddPatientComponent,
     EditDetailsComponent,
-    MyPatientsComponent
+    MyPatientsComponent,
+    PatientsMealsComponent
   ]
 })
 export class ActionsModule { }

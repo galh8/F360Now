@@ -262,8 +262,8 @@
       <div class="text" style="font-size: 25px; color: black; letter-spacing: 3px; padding-bottom: 15px">
         Your patients
       </div>
-       <select>
-         <option *ngFor="let patient of patients" (click)="onSelect(patient)">{{patient.first_name}} {{patient.last_name}}</option>
+       <select (change)="onSelect($event.value)">
+         <option *ngFor="let patient of patients" [ngValue]="patient">{{patient.first_name}} {{patient.last_name}}</option>
       </select>
     </div>
     <div class="card card5" style="color: black">
@@ -301,9 +301,9 @@
     <div class="card card6">
       <div class="card-header" style="background-color: white">
         <h5 style="color: black">Calories Charts&nbsp;&nbsp;&nbsp;&nbsp;
-        <select>
-          <option (click)="onChangeCaloriesCharts(1)">Calories burnt</option>
-          <option (click)="onChangeCaloriesCharts(2)">Income Calories</option>
+        <select (change)="onChangeCaloriesCharts($event.target.value)">
+          <option value="1">Calories burnt</option>
+          <option value="2">Income Calories</option>
         </select>
         </h5>
       </div>
@@ -344,5 +344,6 @@
     </div>
 
   </div>
+</div>
 </div>
 </div>
