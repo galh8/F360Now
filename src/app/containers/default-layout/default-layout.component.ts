@@ -25,6 +25,5 @@ export class DefaultLayoutComponent implements OnInit{
 
   ngOnInit() {
     this.userPicture = localStorage.getItem('picture');
-    console.log(this.userPicture);
   }
 }

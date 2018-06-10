@@ -37,7 +37,6 @@ export class UserService {
 
   getInfo(email: string) {
     const postData = new FormData();
-    console.log(email);
     postData.append('therapist_email', email);
 
     return this.http.post(this.rootUrl + 'get_therapist_info.php', postData);

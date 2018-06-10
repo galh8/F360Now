@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit{
   trainer_institution = '';
   trainer_starting_year = '';
   arr_month: string[] = new Array(28);
+  currentDate: any;
+  date28DaysAgo: any;
 
   current_patient =
     {
@@ -42,6 +44,9 @@ export class DashboardComponent implements OnInit{
 
   caloriesBurntData: any;
 
+  // Income calories
+  caloriesFromPic: any;
+  generalCalories: any;
   caloriesIncomeData: any;
 
   lastMeasure: any;
@@ -83,9 +88,10 @@ export class DashboardComponent implements OnInit{
     return currentDate;
   }
 
-  public get28daysAgoDate(date) {
-    const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 28);
-    return newDate;
+  public get28daysAgoDate() {
+    const date = new Date(new Date().setDate(new Date().getDate() - 28));
+    const convertedDate = date.toJSON().slice(0, 10);
+    return convertedDate;
   }
 
   // Converts the dates to our format
@@ -245,6 +251,7 @@ export class DashboardComponent implements OnInit{
           console.log('Error: ' + err.error);
         });
 
+    // Get calories from meals pictures
     this.userService.getCaloriesFromPic(patient_email,'2018-06-04','2018-06-24')
       .subscribe((data: any) => {
           if (data.error == true) {
@@ -252,6 +259,22 @@ export class DashboardComponent implements OnInit{
           } else {
             console.log('amir!');
             console.log(data);
+            this.caloriesFromPic = data;
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
+
+    // Get calories from general meals
+    this.userService.getGeneralCalories(patient_email,'2018-06-04','2018-06-24')
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            console.log('gal!');
+            console.log(data);
+            this.generalCalories = data;
           }
         },
         err => {
@@ -288,6 +311,8 @@ export class DashboardComponent implements OnInit{
   ngOnInit() {
     this.initializeDaytime();
     this.thirtyLastDays();
+    this.currentDate = this.getCurrentDate();
+    this.date28DaysAgo = this.get28daysAgoDate();
     this.userService.getInfo(localStorage.getItem('email'))
       .subscribe((data: any) => {
           if (data.error == true){
@@ -327,8 +352,6 @@ export class DashboardComponent implements OnInit{
     let greenUp = "http://grigale.grigale.com/fitness360user_app/Arrows2/greenup.png";
     let redUp = "http://grigale.grigale.com/fitness360user_app/Arrows2/redup.png";
     let redDown = "http://grigale.grigale.com/fitness360user_app/Arrows2/reddown.png";
-
-    console.log(newMeasure.bmr);
 
     if (newMeasure.weight > lastMeasure.weight) {
       this.weightStatus = redUp;
@@ -419,7 +442,6 @@ export class DashboardComponent implements OnInit{
   }
 
   onChangeCaloriesCharts(chartNum) {
-      console.log('in on calories');
       if (chartNum == 1) {
         this.calculateWeeklyCaloriesBurnt(this.caloriesBurntData);
       } else{
