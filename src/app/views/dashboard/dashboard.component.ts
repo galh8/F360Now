@@ -64,10 +64,10 @@ export class DashboardComponent implements OnInit{
   physiqueStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
   bmrStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
 
-  barChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
-  barChartType = 'bar';
+  caloriesChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
+  caloriesChartType = 'bar';
 
-  barChartData = [
+  caloriesChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
     {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'},
     {data: [2400, 2700, 4000, 6000], label: 'Steps'}
@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit{
 
     // return [week1, week2, week3, week4];
 
-    this.barChartData = [
+    this.caloriesChartData = [
       {data: [week1[0], week2[0], week3[0], week4[0]], label: 'Total Calories'},
       {data: [week1[1]  , week2[1], week3[1], week4[1]], label: 'Activity Calories'},
       {data: [week1[2]  , week2[2], week3[2], week4[2]], label: 'Steps'}
@@ -161,7 +161,7 @@ export class DashboardComponent implements OnInit{
   }
 
   calculateIncomeCalories(data) {
-    this.barChartData = [
+    this.caloriesChartData = [
       {data: [1,2,3,4], label: 'Total Calories'},
       {data: [1,2,3,4], label: 'Activity Calories'},
       {data: [1,2,3,4], label: 'Steps'}
@@ -468,15 +468,15 @@ export class DashboardComponent implements OnInit{
   public lineChartLegend = true;
   public lineChartType = 'line';
 
-  // Bar chart - calories chart
-  public barChartOptions: any = {
+  // calories chart - calories chart
+  public caloriesChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLegend = true;
+  public caloriesChartLegend = true;
 
 
-  public barChartColours: Array<any> = [
+  public caloriesChartColours: Array<any> = [
     { // green
       backgroundColor: 'rgba(119, 137, 16, 0.8)',
       borderColor: 'rgba(119, 137, 16, 1)',
