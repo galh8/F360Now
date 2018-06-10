@@ -7,7 +7,7 @@ import {User} from './user.model';
 
 @Injectable()
 export class UserService {
-  readonly rootUrl = 'http://grigale.grigale.com/fitness360user_app/';
+    readonly rootUrl = 'http://grigale.grigale.com/fitness360user_app/';
   constructor(private http: HttpClient) { }
 
   registerUser(user: User) {
@@ -94,6 +94,24 @@ export class UserService {
 
     return this.http.post(this.rootUrl + 'delete_request.php', postData);
 
+  }
+
+  getCaloriesFromPic(patient_email, start_date, last_date) {
+    const postData = new FormData();
+    postData.append('patient_email', patient_email);
+    postData.append('start_date', start_date);
+    postData.append('last_date', last_date);
+
+    return this.http.post(this.rootUrl + 'get_calories_from_images.php', postData);
+  }
+
+  getGeneralCalories(patient_email, start_date, last_date) {
+    const postData = new FormData();
+    postData.append('patient_email', patient_email);
+    postData.append('start_date', start_date);
+    postData.append('last_date', last_date);
+
+    return this.http.post(this.rootUrl + 'get_calories_from_images.php', postData);
   }
 
 

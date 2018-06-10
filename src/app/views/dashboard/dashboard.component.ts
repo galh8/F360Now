@@ -30,7 +30,8 @@ export class DashboardComponent implements OnInit{
       visceral_fat : '',
       physique_rating : '',
       metabolic_age : '',
-      body_water : ''
+      body_water : '',
+      bmr: ''
     };
 
   patient: any;
@@ -58,6 +59,7 @@ export class DashboardComponent implements OnInit{
   ageStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
   fatStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
   physiqueStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
+  bmrStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
 
   barChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
@@ -75,6 +77,16 @@ export class DashboardComponent implements OnInit{
   lineChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   constructor(private userService: UserService) {}
+
+  public getCurrentDate() {
+    const currentDate = new Date().toJSON().slice(0, 10);
+    return currentDate;
+  }
+
+  public get28daysAgoDate(date) {
+    const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 28);
+    return newDate;
+  }
 
   // Converts the dates to our format
   public convertDate(date) {
@@ -233,6 +245,19 @@ export class DashboardComponent implements OnInit{
           console.log('Error: ' + err.error);
         });
 
+    this.userService.getCaloriesFromPic(patient_email,'2018-06-04','2018-06-24')
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            console.log('amir!');
+            console.log(data);
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
+
     // Get first patient scale
     this.userService.getPatientScales(patient_email)
       .subscribe((data: any) => {
@@ -248,6 +273,7 @@ export class DashboardComponent implements OnInit{
             this.current_patient.metabolic_age = this.lastMeasure.metabolic_age;
             this.current_patient.physique_rating = this.lastMeasure.physique_rating;
             this.current_patient.visceral_fat = this.lastMeasure.visceral_fat;
+            this.current_patient.bmr = this.lastMeasure.bmr;
             this.calculateWeeklyMeasurement(data);
             this.calculateMonthlyCalories(data, 0, 28);
             this.updateStatus(this.lastMeasure,this.beforeLastMeasure);
@@ -302,6 +328,8 @@ export class DashboardComponent implements OnInit{
     let redUp = "http://grigale.grigale.com/fitness360user_app/Arrows2/redup.png";
     let redDown = "http://grigale.grigale.com/fitness360user_app/Arrows2/reddown.png";
 
+    console.log(newMeasure.bmr);
+
     if (newMeasure.weight > lastMeasure.weight) {
       this.weightStatus = redUp;
     } else if (newMeasure.weight < lastMeasure.weight) {
@@ -338,10 +366,16 @@ export class DashboardComponent implements OnInit{
       this.ageStatus = greenDown;
     }
 
+    if (newMeasure.bmr > lastMeasure.bmr) {
+      this.bmrStatus = greenUp;
+    } else if (newMeasure.bmr < lastMeasure.bmr) {
+      this.bmrStatus = redDown;
+    }
+
     if (newMeasure.physique_rating > lastMeasure.physique_rating) {
-      this.ageStatus = greenUp;
+      this.physiqueStatus = greenUp;
     } else if (newMeasure.physique_rating < lastMeasure.physique_rating) {
-      this.ageStatus = redDown;
+      this.physiqueStatus = redDown;
     }
 
   }
@@ -354,6 +388,7 @@ export class DashboardComponent implements OnInit{
     this.ageStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
     this.fatStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
     this.physiqueStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
+    this.bmrStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
   }
 
   public initializeDaytime() {

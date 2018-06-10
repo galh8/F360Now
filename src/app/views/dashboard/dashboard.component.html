@@ -63,13 +63,16 @@
         <div class="col">
           <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/bodyfat.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.fat_percentage}}</span><span>&nbsp;&nbsp;<img [src]="fatStatus" style="height: 35px; width: 20px"></span>
         </div>
+        <div class="col">
+          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/musclemass.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.mass_weight}}</span><span>&nbsp;&nbsp;<img [src]="massStatus" style="height: 35px; width: 20px"></span>
+        </div>
       </div>
       <div class="row" style="margin-top: 25px">
         <div class="col">
           <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/body_water.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.body_water}}</span><span>&nbsp;&nbsp;<img [src]="waterStatus" style="height: 35px; width: 20px"></span>
         </div>
         <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/musclemass.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.mass_weight}}</span><span>&nbsp;&nbsp;<img [src]="massStatus" style="height: 35px; width: 20px"></span>
+          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/bmr.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.bmr}}</span><span>&nbsp;&nbsp;<img [src]="bmrStatus" style="height: 35px; width: 20px"></span>
         </div>
         <div class="col">
           <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/metabolic_age.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.metabolic_age}}</span><span>&nbsp;&nbsp;<img [src]="ageStatus" style="height: 35px; width: 20px"></span>
@@ -84,13 +87,13 @@
       <div id="outer">
         <div class="inner" style="color: black; font-size: 18px;">Choose charts:</div>
         <div class="inner"><button class="button button1" style="width: 300px; height: 35px" (click)="switchToNutrition()">Fitness</button></div>
-        <div class="inner"><button class="button button2" style="width: 300px; height: 35px" (click)="switchToFitness()">Nutrition</button></div>
+        <div class="inner"><button class="button button2" style="width: 400px; height: 35px" (click)="switchToFitness()">Calories and Body Measurement</button></div>
       </div>
     </div>
 
 
 
-    <div class="card card6" style="margin: 5px" *ngIf="!fitness_or_nutrition">
+    <div class="card card6" style="margin: 5px" *ngIf="fitness_or_nutrition">
       <div class="card-header" style="background-color: white">
         <h5 style="color: black">Calories Charts&nbsp;&nbsp;&nbsp;&nbsp;
         <select (change)="onChangeCaloriesCharts($event.target.value)">
@@ -111,7 +114,7 @@
             (chartClick)="chartClicked($event)"></canvas>
     </div>
 
-    <div class="card card7" style="margin: 5px" *ngIf="!fitness_or_nutrition">
+    <div class="card card7" style="margin: 5px" *ngIf="fitness_or_nutrition">
       <div class="col">
         <div class="card-header" style="background-color: white">
           <h5 style="color: black"> Body Measurements - 28 Last days</h5>
@@ -134,13 +137,9 @@
       </div>
     </div>
 
-    <div class="card card9" style="margin: 5px" *ngIf="fitness_or_nutrition">
+    <div class="card card9" style="margin: 5px" *ngIf="!fitness_or_nutrition">
       <div class="card-header" style="background-color: white">
         <h5 style="color: black">Charts&nbsp;&nbsp;&nbsp;&nbsp;
-          <select (change)="onChangeCaloriesCharts($event.target.value)">
-            <option value="1">Calories burnt</option>
-            <option value="2">Income Calories</option>
-          </select>
         </h5>
       </div>
 
@@ -155,7 +154,7 @@
               (chartClick)="chartClicked($event)"></canvas>
     </div>
 
-    <div class="card card10"  style="margin: 5px" *ngIf="fitness_or_nutrition">
+    <div class="card card10"  style="margin: 5px" *ngIf="!fitness_or_nutrition">
       <div class="col">
         <div class="card-header" style="background-color: white">
           <h5 style="color: black"> - 28 Last days</h5>
