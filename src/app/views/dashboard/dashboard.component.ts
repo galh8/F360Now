@@ -369,22 +369,18 @@ export class DashboardComponent implements OnInit{
   }
 
   public switchToNutrition() {
-    console.log('gal nut');
     this.fitness_or_nutrition = false;
   }
 
   public switchToFitness() {
-    console.log('gal fit');
     this.fitness_or_nutrition = true;
   }
 
   public onSelect(patient) {
-    console.log('gal');
-    console.log(patient);
-    this.patient = patient;
-    this.current_patient.first_name = this.patient.first_name;
-    this.current_patient.last_name = this.patient.last_name;
-    this.updatePatientGraphs(this.patient.patient_email);
+    let partsOfStr = patient.split(',');
+    this.current_patient.first_name = partsOfStr[0];
+    this.current_patient.last_name = partsOfStr[1];
+    this.updatePatientGraphs(partsOfStr[2]);
   }
 
   onChangeCaloriesCharts(chartNum) {
@@ -395,7 +391,7 @@ export class DashboardComponent implements OnInit{
         this.calculateIncomeCalories(this.caloriesBurntData);
       }
   }
-
+  // Line chart - body measur chart
   public lineChartOptions: any = {
     animation: false,
     responsive: true
@@ -429,7 +425,7 @@ export class DashboardComponent implements OnInit{
   public lineChartLegend = true;
   public lineChartType = 'line';
 
-  // barChart
+  // Bar chart - calories chart
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true

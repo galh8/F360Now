@@ -37,8 +37,13 @@
       <div class="text" style="font-size: 25px; color: black; letter-spacing: 3px; padding-bottom: 15px">
         Your patients
       </div>
-       <select (change)="onSelect($event.value)">
-         <option *ngFor="let patient of patients" [ngValue]="patient">{{patient.first_name}} {{patient.last_name}}</option>
+       <!--<select (change)="onSelect($event.value())">-->
+         <!--<option *ngFor="let patient of patients">{{patient.first_name}} {{patient.last_name}}</option>-->
+      <!--</select>-->
+      <select #selectElem (change)="onSelect(selectElem.value)">
+        <option *ngFor="let patient of patients" [value]="[patient.first_name,patient.last_name,patient.patient_email]">
+          {{patient.first_name}} {{patient.last_name}}
+        </option>
       </select>
     </div>
 
