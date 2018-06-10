@@ -45,9 +45,7 @@ export class DashboardComponent implements OnInit{
   caloriesBurntData: any;
 
   // Income calories
-  caloriesFromPic: any;
-  generalCalories: any;
-  caloriesIncomeData: any;
+  caloriesIncomeData = [];
 
   lastMeasure: any;
   beforeLastMeasure: any;
@@ -65,6 +63,9 @@ export class DashboardComponent implements OnInit{
   fatStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
   physiqueStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
   bmrStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
+
+  barChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
+  barChartType = 'bar';
 
   barChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
@@ -251,35 +252,20 @@ export class DashboardComponent implements OnInit{
           console.log('Error: ' + err.error);
         });
 
-    // Get calories from meals pictures
-    this.userService.getCaloriesFromPic(patient_email,'2018-06-04','2018-06-24')
+    // Get income calories
+    this.userService.getGeneralCalories(patient_email,'2018-06-04','2018-06-24')
       .subscribe((data: any) => {
           if (data.error == true) {
             alert('Error!');
           } else {
-            console.log('amir!');
-            console.log(data);
-            this.caloriesFromPic = data;
+            this.caloriesIncomeData = data;
+            console.log(this.caloriesIncomeData);
           }
         },
         err => {
           console.log('Error: ' + err.error);
         });
 
-    // Get calories from general meals
-    this.userService.getGeneralCalories(patient_email,'2018-06-04','2018-06-24')
-      .subscribe((data: any) => {
-          if (data.error == true) {
-            alert('Error!');
-          } else {
-            console.log('gal!');
-            console.log(data);
-            this.generalCalories = data;
-          }
-        },
-        err => {
-          console.log('Error: ' + err.error);
-        });
 
     // Get first patient scale
     this.userService.getPatientScales(patient_email)
@@ -445,7 +431,7 @@ export class DashboardComponent implements OnInit{
       if (chartNum == 1) {
         this.calculateWeeklyCaloriesBurnt(this.caloriesBurntData);
       } else{
-        this.calculateIncomeCalories(this.caloriesBurntData);
+        this.calculateIncomeCalories(this.caloriesIncomeData);
       }
   }
   // Line chart - body measur chart
@@ -487,8 +473,6 @@ export class DashboardComponent implements OnInit{
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
-  public barChartType = 'bar';
   public barChartLegend = true;
 
 
