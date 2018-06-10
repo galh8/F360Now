@@ -1,239 +1,11 @@
-<!--<div class="animated fadeIn">-->
-<!--<div class="card-columns cols-2">-->
-<!--<div class="card">-->
-<!--<div class="card-header">-->
-<!--Body Measurements-->
-<!--<div class="card-header-actions">-->
-<!--<a href="http://www.chartjs.org">-->
-<!--<small class="text-muted">docs</small>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card-body">-->
-<!--<div class="chart-wrapper">-->
-<!--<canvas baseChart class="chart"-->
-<!--[datasets]="lineChartData"-->
-<!--[labels]="lineChartLabels"-->
-<!--[options]="lineChartOptions"-->
-<!--[colors]="lineChartColours"-->
-<!--[legend]="lineChartLegend"-->
-<!--[chartType]="lineChartType"-->
-<!--(chartHover)="chartHovered($event)"-->
-<!--(chartClick)="chartClicked($event)"></canvas>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card">-->
-<!--<div class="card-header">-->
-<!--Calories Burnt-->
-<!--<div class="card-header-actions">-->
-<!--<a href="http://www.chartjs.org">-->
-<!--<small class="text-muted">docs</small>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card-body">-->
-<!--<div class="chart-wrapper">-->
-<!--<canvas baseChart class="chart"-->
-<!--[datasets]="barChartData"-->
-<!--[labels]="barChartLabels"-->
-<!--[options]="barChartOptions"-->
-<!--[legend]="barChartLegend"-->
-<!--[chartType]="barChartType"-->
-<!--(chartHover)="chartHovered($event)"-->
-<!--(chartClick)="chartClicked($event)"></canvas>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card">-->
-<!--<div class="card-header">-->
-<!--Doughnut Chart-->
-<!--<div class="card-header-actions">-->
-<!--<a href="http://www.chartjs.org">-->
-<!--<small class="text-muted">docs</small>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card-body">-->
-<!--<div class="chart-wrapper">-->
-<!--<canvas baseChart class="chart"-->
-<!--[data]="doughnutChartData"-->
-<!--[labels]="doughnutChartLabels"-->
-<!--[chartType]="doughnutChartType"-->
-<!--(chartHover)="chartHovered($event)"-->
-<!--(chartClick)="chartClicked($event)"></canvas>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card">-->
-<!--<div class="card-header">-->
-<!--Radar Chart-->
-<!--<div class="card-header-actions">-->
-<!--<a href="http://www.chartjs.org">-->
-<!--<small class="text-muted">docs</small>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card-body">-->
-<!--<div class="chart-wrapper">-->
-<!--<canvas baseChart class="chart"-->
-<!--[datasets]="radarChartData"-->
-<!--[labels]="radarChartLabels"-->
-<!--[chartType]="radarChartType"-->
-<!--(chartHover)="chartHovered($event)"-->
-<!--(chartClick)="chartClicked($event)"></canvas>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card">-->
-<!--<div class="card-header">-->
-<!--Pie Chart-->
-<!--<div class="card-header-actions">-->
-<!--<a href="http://www.chartjs.org">-->
-<!--<small class="text-muted">docs</small>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card-body">-->
-<!--<div class="chart-wrapper">-->
-<!--<canvas baseChart class="chart"-->
-<!--[data]="pieChartData"-->
-<!--[labels]="pieChartLabels"-->
-<!--[chartType]="pieChartType"-->
-<!--(chartHover)="chartHovered($event)"-->
-<!--(chartClick)="chartClicked($event)"></canvas>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card">-->
-<!--<div class="card-header">-->
-<!--Polar Area Chart-->
-<!--<div class="card-header-actions">-->
-<!--<a href="http://www.chartjs.org">-->
-<!--<small class="text-muted">docs</small>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="card-body">-->
-<!--<div class="chart-wrapper">-->
-<!--<canvas baseChart class="chart"-->
-<!--[data]="polarAreaChartData"-->
-<!--[labels]="polarAreaChartLabels"-->
-<!--[legend]="polarAreaLegend"-->
-<!--[chartType]="polarAreaChartType"-->
-<!--(chartHover)="chartHovered($event)"-->
-<!--(chartClick)="chartClicked($event)"></canvas>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<ul >-->
-<!--<li *ngFor="let user of users">-->
-<!--{{user}}-->
-<!--</li>-->
-<!--</ul>-->
-
-<!--<div class="grid">-->
-<!--<div class="General">-->
-  <!--<app-general></app-general>-->
-<!--</div>-->
-
-<!--<div class="patients_list">-->
-  <!--<div class="list-group">-->
-    <!--<a-->
-      <!--href="#"-->
-      <!--class="list-group-item"-->
-      <!--*ngFor="let user of users">-->
-      <!--<div (click)="onSelect(user)">{{ user.First_name }} {{user.Last_name}}</div>-->
-    <!--</a>-->
-  <!--</div>-->
-<!--</div>-->
-<!--<div class="user">-->
-  <!--<app-user [current_user] = "current_user">  </app-user>-->
-<!--</div>-->
-
-<!--<div class="patient_content">-->
-  <!--<div class="card-cols">-->
-    <!--<div class="card text-black f0f3f5">-->
-      <!--<div class="card-header bg-success">-->
-        <!--<div class="col">-->
-          <!--<h1 style="font-weight: bold; color: black">{{current_user.First_name}} {{current_user.Last_name}}</h1>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="card-body">-->
-        <!--<div class="row">-->
-          <!--<h4 style="font-weight: bold; margin-bottom: 15px; color: dimgrey">Measurments</h4>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-          <!--<div class="col">-->
-           <!--<h5>Height = {{current_user.Height}}</h5>-->
-          <!--</div>-->
-          <!--<div class="col">-->
-            <!--<h5>Weight = {{current_user.Weight}}</h5>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-
-  <!--<div class="card-columns cols-2">-->
-    <!--<div class="card">-->
-      <!--<div class="card-header">-->
-        <!--Body Measurements-->
-        <!--<div class="card-header-actions">-->
-          <!--<a href="http://www.chartjs.org">-->
-            <!--<small class="text-muted">docs</small>-->
-          <!--</a>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="card-body">-->
-        <!--<div class="chart-wrapper">-->
-          <!--<canvas baseChart class="chart"-->
-                  <!--[datasets]="lineChartData"-->
-                  <!--[labels]="lineChartLabels"-->
-                  <!--[options]="lineChartOptions"-->
-                  <!--[colors]="lineChartColours"-->
-                  <!--[legend]="lineChartLegend"-->
-                  <!--[chartType]="lineChartType"-->
-                  <!--(chartHover)="chartHovered($event)"-->
-                  <!--(chartClick)="chartClicked($event)"></canvas>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="card">-->
-      <!--<div class="card-header">-->
-        <!--Calories Burnt-->
-        <!--<div class="card-header-actions">-->
-          <!--<a href="http://www.chartjs.org">-->
-            <!--<small class="text-muted">docs</small>-->
-          <!--</a>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="card-body">-->
-        <!--<div class="chart-wrapper">-->
-          <!--<canvas baseChart class="chart"-->
-                  <!--[datasets]="barChartData"-->
-                  <!--[labels]="barChartLabels"-->
-                  <!--[options]="barChartOptions"-->
-                  <!--[legend]="barChartLegend"-->
-                  <!--[chartType]="barChartType"-->
-                  <!--(chartHover)="chartHovered($event)"-->
-                  <!--(chartClick)="chartClicked($event)"></canvas>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poller+One" />
+
+
 <div class="wrap">
+
   <div class="cards">
-    <div class="card card1">
+
+    <div class="card card1" style="margin: 5px">
       <div class="text-value" style="align-items: right; font-size: 25px; text-align: left; padding-bottom: 12px">
         {{dayTime}}
       </div>
@@ -241,7 +13,8 @@
         {{trainer_first_name}} {{trainer_last_name}}
       </div>
     </div>
-    <div class="card card2">
+
+    <div class="card card2" style="margin: 5px">
       <div class="text" style="align-items: flex-end; size: A4; letter-spacing: 3px; font-size: 35px; text-align: center; padding-bottom: 12px">
         {{trainer_institution}}
       </div>
@@ -250,7 +23,8 @@
         Institute
       </div>
     </div>
-    <div class="card card3">
+
+    <div class="card card3" style="margin: 5px">
       <div class="text-value" style="align-items: right; font-size: 30px; text-align: center; padding-top: 10px; padding-bottom: 12px">
         {{numberOfPatients}}
       </div>
@@ -258,7 +32,8 @@
         Patients
       </div>
     </div>
-    <div class="card card4">
+
+    <div class="card card4" style="margin: 5px">
       <div class="text" style="font-size: 25px; color: black; letter-spacing: 3px; padding-bottom: 15px">
         Your patients
       </div>
@@ -266,7 +41,8 @@
          <option *ngFor="let patient of patients" [ngValue]="patient">{{patient.first_name}} {{patient.last_name}}</option>
       </select>
     </div>
-    <div class="card card5" style="color: black">
+
+    <div class="card card5" style="color: black; margin: 5px">
       <div class="row">
         <span style="color: black; font-size: 30px">{{current_patient.first_name}} {{current_patient.last_name}}</span>
       </div>
@@ -298,7 +74,18 @@
         </div>
       </div>
     </div>
-    <div class="card card6">
+
+    <div class="card card8" style="margin: 5px; padding: 15px">
+      <div id="outer">
+        <div class="inner" style="color: black; font-size: 18px;">Choose charts:</div>
+        <div class="inner"><button class="button button1" style="width: 300px; height: 35px" (click)="switchToNutrition()">Fitness</button></div>
+        <div class="inner"><button class="button button2" style="width: 300px; height: 35px" (click)="switchToFitness()">Nutrition</button></div>
+      </div>
+    </div>
+
+
+
+    <div class="card card6" style="margin: 5px" *ngIf="!fitness_or_nutrition">
       <div class="card-header" style="background-color: white">
         <h5 style="color: black">Calories Charts&nbsp;&nbsp;&nbsp;&nbsp;
         <select (change)="onChangeCaloriesCharts($event.target.value)">
@@ -317,33 +104,74 @@
             [chartType]="barChartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
-
-
     </div>
-    <div class="card card7">
+
+    <div class="card card7" style="margin: 5px" *ngIf="!fitness_or_nutrition">
       <div class="col">
+        <div class="card-header" style="background-color: white">
+          <h5 style="color: black"> Body Measurements - 28 Last days</h5>
+          <br>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColours"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card9" style="margin: 5px" *ngIf="fitness_or_nutrition">
       <div class="card-header" style="background-color: white">
-        <h5 style="color: black"> Body Measurements - 28 Last days</h5>
-        <br>
-      </div>
-      <div class="card-body">
-      <div class="chart-wrapper">
-        <canvas baseChart class="chart"
-          [datasets]="lineChartData"
-          [labels]="lineChartLabels"
-          [options]="lineChartOptions"
-          [colors]="lineChartColours"
-          [legend]="lineChartLegend"
-          [chartType]="lineChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)">
-        </canvas>
+        <h5 style="color: black">Charts&nbsp;&nbsp;&nbsp;&nbsp;
+          <select (change)="onChangeCaloriesCharts($event.target.value)">
+            <option value="1">Calories burnt</option>
+            <option value="2">Income Calories</option>
+          </select>
+        </h5>
       </div>
 
+      <canvas baseChart class="chart"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [colors]="barChartColours"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
 
+    <div class="card card10"  style="margin: 5px" *ngIf="fitness_or_nutrition">
+      <div class="col">
+        <div class="card-header" style="background-color: white">
+          <h5 style="color: black"> - 28 Last days</h5>
+          <br>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColours"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
-</div>
-</div>
 </div>

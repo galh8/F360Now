@@ -46,6 +46,8 @@ export class DashboardComponent implements OnInit{
   lastMeasure: any;
   beforeLastMeasure: any;
   dateOfLastMeasure: any;
+  // nutrition is false. fitness is true.
+  fitness_or_nutrition = false;
 
   dayTime = "Good Morning,";
 
@@ -364,6 +366,16 @@ export class DashboardComponent implements OnInit{
     } else if (n > 12) {
       this.dayTime = "Good afternoon,";
     }
+  }
+
+  public switchToNutrition() {
+    console.log('gal nut');
+    this.fitness_or_nutrition = false;
+  }
+
+  public switchToFitness() {
+    console.log('gal fit');
+    this.fitness_or_nutrition = true;
   }
 
   public onSelect(patient) {

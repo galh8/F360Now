@@ -12,15 +12,17 @@ body {
 
 
 .cards {
-  margin: 10px;
-  padding: 10px;
+  margin: 2px;
+  padding: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  //grid-gap: 8px;
   grid-template-areas:
     "a a a b b c"
     "d e e e e e"
-    "g g g f f f";
+    "h h h h h h"
+    "g g g f f f"
+    "j j j i i i";
 }
 
 .card {
@@ -43,3 +45,54 @@ body {
 .card5 { grid-area: e; background-color: rgba(155, 171, 130, 1); }
 .card6 { grid-area: f; background-color: white; }
 .card7 { grid-area: g; background-color: white; }
+.card8 { grid-area: h; background-color: rgba(222, 227, 216, 1) }
+.card9 { grid-area: i; background-color: white; }
+.card10 { grid-area: j; background-color: white; }
+
+
+#outer
+{
+  width:100%;
+}
+
+.inner
+{
+  display: inline-block;
+  padding-right: 130px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button1 {
+  background-color: rgba(236, 242, 233, 1);
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: rgba(236, 242, 233, 1);
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
