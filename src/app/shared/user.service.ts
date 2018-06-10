@@ -111,8 +111,18 @@ export class UserService {
     postData.append('start_date', start_date);
     postData.append('last_date', last_date);
 
-    return this.http.post(this.rootUrl + 'get_calories_from_images.php', postData);
+    return this.http.post(this.rootUrl + 'get_general_calories.php', postData);
   }
+
+  get_patient_workouts_by_dates(patient_email, start_date, last_date) {
+    const postData = new FormData();
+    postData.append('patient_email', patient_email);
+    postData.append('start_date', start_date);
+    postData.append('last_date', last_date);
+
+    return this.http.post(this.rootUrl + 'get_patient_workouts_by_dates', postData);
+  }
+
 
 
 }
