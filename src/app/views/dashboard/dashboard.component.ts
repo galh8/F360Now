@@ -149,7 +149,7 @@ export class DashboardComponent implements OnInit{
   public thirtyLastDays() {
     let j = 0;
     for (let i = 27; i > -1; i--) {
-      let date = this.getdaysAgoDate(i)
+      let date = this.getdaysAgoDate(i);
       this.arr_month[j++] = date;
     }
 
@@ -170,7 +170,6 @@ export class DashboardComponent implements OnInit{
           calories = calories + data[j].calories;
           activeCalories = activeCalories + data[j].active_calories;
           steps = steps + data[j].steps;
-          break;
         }
       }
     }
@@ -212,9 +211,9 @@ export class DashboardComponent implements OnInit{
       for (let j = 0; j < data.length; j++) {
         let date = data[j].activity_time.split(' ')[0];
         if (date === current_date) {
+          console.log(j);
           totalWorkouts = totalWorkouts + 1;
           totalDuration = totalDuration + data[j].duration;
-          break;
         }
       }
     }
@@ -223,6 +222,7 @@ export class DashboardComponent implements OnInit{
   }
 
   public calculateWorkoutsPerWeek(data) {
+    console.log(data);
     let week1 = this.workoutByInterval(data,0,7);
     let week2 = this.workoutByInterval(data,7,14);
     let week3 = this.workoutByInterval(data,14,21);
