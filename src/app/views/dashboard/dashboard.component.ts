@@ -21,6 +21,9 @@ export class DashboardComponent implements OnInit{
   currentDate: any;
   date28DaysAgo: any;
 
+  @ViewChild('calorieChart')
+  calorieChart: BaseChartDirective;
+
   current_patient =
     {
       first_name : '',
@@ -64,14 +67,22 @@ export class DashboardComponent implements OnInit{
   physiqueStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
   bmrStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
 
-  caloriesChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
-  caloriesChartType = 'bar';
 
-  caloriesChartData = [
+  public caloriesChartType = 'bar';
+  public caloriesChartType2 = 'line';
+  calorieChartToShow = true;
+
+  public caloriesChartData = [
     {data: [10000, 9000, 10000, 11000], label: 'Total Calories'},
     {data: [2500  , 3000, 5000, 6000], label: 'Activity Calories'},
     {data: [2400, 2700, 4000, 6000], label: 'Steps'}
   ];
+
+  public caloriesChartData2 = [
+    {data: [10000, 9000, 10000, 11000], label: 'Total Calories'}
+  ];
+
+  public caloriesChartLabels: string[] = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
 
   // lineChart
   lineChartData = [
@@ -153,19 +164,48 @@ export class DashboardComponent implements OnInit{
 
     // return [week1, week2, week3, week4];
 
-    this.caloriesChartData = [
-      {data: [week1[0], week2[0], week3[0], week4[0]], label: 'Total Calories'},
-      {data: [week1[1]  , week2[1], week3[1], week4[1]], label: 'Activity Calories'},
-      {data: [week1[2]  , week2[2], week3[2], week4[2]], label: 'Steps'}
-    ];
+    let labels = ['3 weeks ago', '2 weeks ago', 'week ago', 'this week'];
+
+    this.caloriesChartLabels.length = 0;
+
+    for (let i = 0; i < labels.length; i++) {
+      this.caloriesChartLabels.push(labels[i]);
+    }
+
+      this.caloriesChartData = [
+        {data: [week1[0], week2[0], week3[0], week4[0]], label: 'Total Calories'},
+        {data: [week1[1]  , week2[1], week3[1], week4[1]], label: 'Activity Calories'},
+        {data: [week1[2]  , week2[2], week3[2], week4[2]], label: 'Steps'}
+      ];
+
+    this.calorieChartToShow = true;
   }
 
   calculateIncomeCalories(data) {
-    this.caloriesChartData = [
-      {data: [1,2,3,4], label: 'Total Calories'},
-      {data: [1,2,3,4], label: 'Activity Calories'},
-      {data: [1,2,3,4], label: 'Steps'}
+
+    console.log(data);
+
+    let total_calories = [];
+    let dates = [];
+
+    for (let i = 0; i < data.length; i++) {
+      total_calories.push(data[i].total_calories);
+      dates.push(data[i].meal_date);
+    }
+
+    this.caloriesChartLabels.length = 0;
+    for (let i = 0; i < total_calories.length; i++) {
+      this.caloriesChartLabels.push(dates[i]);
+    }
+
+    this.caloriesChartData.length = null;
+
+    this.caloriesChartData2 = [
+      {data: total_calories, label: 'Total Calories'},
     ];
+
+    this.calorieChartToShow = false;
+    console.log(this.caloriesChartData);
   }
 
   public calculateMonthlyCalories(data, from, to) {
@@ -478,15 +518,15 @@ export class DashboardComponent implements OnInit{
 
   public caloriesChartColours: Array<any> = [
     { // green
-      backgroundColor: 'rgba(119, 137, 16, 0.8)',
+      backgroundColor: 'rgba(119, 137, 16, 0.2)',
       borderColor: 'rgba(119, 137, 16, 1)',
       pointBackgroundColor: 'rgba(119, 137, 16, 1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(119, 137, 16, 1)'
+      pointHoverBorderColor: 'rgba(119, 137, 16, 0.8)'
     },
     { // blue
-      backgroundColor: 'rgba(71, 148, 167, 0.8)',
+      backgroundColor: 'rgba(71, 148, 167, 0.2)',
       borderColor: 'rgba(71, 148, 167, 1)',
       pointBackgroundColor: 'rgba(71, 148, 167, 1)',
       pointBorderColor: '#fff',
@@ -494,7 +534,7 @@ export class DashboardComponent implements OnInit{
       pointHoverBorderColor: 'rgba(71, 148, 167, 0.8)'
     },
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.8)',
+      backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',

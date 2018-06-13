@@ -102,16 +102,30 @@
         </select>
         </h5>
       </div>
-
-          <canvas baseChart class="chart"
-            [datasets]="caloriesChartData"
-            [labels]="caloriesChartLabels"
-            [options]="caloriesChartOptions"
-            [colors]="caloriesChartColours"
-            [legend]="caloriesChartLegend"
-            [chartType]="caloriesChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+          <div *ngIf="caloriesChartData">
+            <div *ngIf="calorieChartToShow">
+            <canvas baseChart #calorieChart="base-chart"
+              [datasets]="caloriesChartData"
+              [labels]="caloriesChartLabels"
+              [options]="caloriesChartOptions"
+              [colors]="caloriesChartColours"
+              [legend]="caloriesChartLegend"
+              [chartType]="caloriesChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+          <div *ngIf="!calorieChartToShow">
+            <canvas baseChart #calorieChart="base-chart"
+                    [datasets]="caloriesChartData2"
+                    [labels]="caloriesChartLabels"
+                    [options]="caloriesChartOptions"
+                    [colors]="caloriesChartColours"
+                    [legend]="caloriesChartLegend"
+                    [chartType]="caloriesChartType2"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
     </div>
 
     <div class="card card7" style="margin: 5px" *ngIf="fitness_or_nutrition">
