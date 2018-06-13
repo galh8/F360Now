@@ -58,6 +58,8 @@ export class DashboardComponent implements OnInit{
   // nutrition is false. fitness is true.
   fitness_or_nutrition = false;
 
+  selectedCaloriesTable = "Calories Burnt";
+
   dayTime = "Good Morning,";
 
   weightStatus = "http://grigale.grigale.com/fitness360user_app/Arrows2/none.png";
@@ -101,6 +103,15 @@ export class DashboardComponent implements OnInit{
   ];
 
   weightChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+  // workoutChart
+  workoutChartData = [
+    {data: [10000, 9000, 10000, 11000], label: 'AVG heart rate'},
+    {data: [10000, 9000, 10000, 11000], label: 'Calories'},
+    {data: [10000, 9000, 10000, 11000], label: 'Duration(by hours)'}
+  ];
+
+  workoutChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   constructor(private userService: UserService) {}
 
@@ -224,8 +235,6 @@ export class DashboardComponent implements OnInit{
 
   calculateIncomeCalories(data) {
 
-    console.log(data);
-
     let total_calories = [];
     let dates = [];
 
@@ -246,7 +255,33 @@ export class DashboardComponent implements OnInit{
     ];
 
     this.calorieChartToShow = false;
-    console.log(this.caloriesChartData);
+  }
+
+  public calculateMonthlyWorkouts(data) {
+    console.log(data);
+    let heart_rate = [];
+    let calories = [];
+    let duration = [];
+    let dates = [];
+
+    for (let i = 0; i < data.length; i++) {
+          dates.push(data[i].activity_time.split(" ")[0]);
+          heart_rate.push(data[i].average_heart_rate);
+          calories.push(data[i].calories);
+          duration.push(((data[i].duration) / 3600).toFixed(0));
+    }
+
+    this.workoutChartLabels.length = 0;
+    for (let i = 0; i < dates.length; i++) {
+      this.workoutChartLabels.push(dates[i]);
+    }
+
+    this.workoutChartData = [
+      {data: heart_rate, label: 'AVG heart rate'},
+      {data: calories, label: 'Calories'},
+      {data: duration, label: 'Duration(by hours)'}
+    ];
+
   }
 
   public calculateMonthlyCalories(data, from, to) {
@@ -286,7 +321,6 @@ export class DashboardComponent implements OnInit{
     let weight: number = 0;
     let fat_percentage: number = 0;
     let mass_weight: number = 0;
-    // console.log(data);
     for (let i = from; i < to; i++) {
       let current_date = this.arr_month[i];
       for (let j = 0; j < data.length; j++) {
@@ -354,6 +388,7 @@ export class DashboardComponent implements OnInit{
             alert('Error!');
           } else {
             this.calculateWorkoutsPerWeek(data);
+            this.calculateMonthlyWorkouts(data);
           }
         },
         err => {
@@ -397,7 +432,6 @@ export class DashboardComponent implements OnInit{
           if (data.error == true){
             console.log('error');
           } else {
-            // console.log(data);
             this.trainer_institution = data.institution;
           }
         },
@@ -526,8 +560,10 @@ export class DashboardComponent implements OnInit{
   onChangeCaloriesCharts(chartNum) {
       if (chartNum == 1) {
         this.calculateWeeklyCaloriesBurnt(this.caloriesBurntData);
+        this.selectedCaloriesTable = "Calories Burnt";
       } else{
         this.calculateIncomeCalories(this.caloriesIncomeData);
+        this.selectedCaloriesTable = "Income Calories";
       }
   }
   // weight chart - body measur chart
@@ -632,6 +668,45 @@ export class DashboardComponent implements OnInit{
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
+
+  // weight chart - body measur chart
+  public workoutChartOptions: any = {
+    animation: false,
+    responsive: true
+  };
+  public workoutChartColours: Array<any> = [
+    { // green
+      backgroundColor: 'rgba(119, 137, 16, 0.2)',
+      borderColor: 'rgba(119, 137, 16, 1)',
+      pointBackgroundColor: 'rgba(119, 137, 16, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(119, 137, 16, 0.8)'
+    },
+    { // blue
+      backgroundColor: 'rgba(71, 148, 167, 0.2)',
+      borderColor: 'rgba(71, 148, 167, 1)',
+      pointBackgroundColor: 'rgba(71, 148, 167, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(71, 148, 167, 0.8)'
+    },
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
+  public workoutChartLegend = true;
+  public workoutChartType = 'line';
+
+
+
+
+
 
   // events
   public chartClicked(e: any): void {
