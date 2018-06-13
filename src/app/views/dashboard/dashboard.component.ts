@@ -117,11 +117,12 @@ export class DashboardComponent implements OnInit{
 
   public getCurrentDate() {
     const currentDate = new Date().toJSON().slice(0, 10);
+    console.log(currentDate);
     return currentDate;
   }
 
-  public get28daysAgoDate() {
-    const date = new Date(new Date().setDate(new Date().getDate() - 28));
+  public getdaysAgoDate(i) {
+    const date = new Date(new Date().setDate(new Date().getDate() - i));
     const convertedDate = date.toJSON().slice(0, 10);
     return convertedDate;
   }
@@ -147,11 +148,12 @@ export class DashboardComponent implements OnInit{
   // Get dates of the last month
   public thirtyLastDays() {
     let j = 0;
-    for (let i = 28; i > 0; i--) {
-      let date = new Date();
-      date.setDate(date.getDate() - i);
-      this.arr_month[j++] = this.convertDate(date);
+    for (let i = 27; i > -1; i--) {
+      let date = this.getdaysAgoDate(i)
+      this.arr_month[j++] = date;
     }
+
+    console.log(this.arr_month);
   }
 
   public caloriesByInterval(data, from, to) {
@@ -258,7 +260,6 @@ export class DashboardComponent implements OnInit{
   }
 
   public calculateMonthlyWorkouts(data) {
-    console.log(data);
     let heart_rate = [];
     let calories = [];
     let duration = [];
@@ -426,7 +427,7 @@ export class DashboardComponent implements OnInit{
     this.initializeDaytime();
     this.thirtyLastDays();
     this.currentDate = this.getCurrentDate();
-    this.date28DaysAgo = this.get28daysAgoDate();
+    this.date28DaysAgo = this.getdaysAgoDate(28);
     this.userService.getInfo(localStorage.getItem('email'))
       .subscribe((data: any) => {
           if (data.error == true){
