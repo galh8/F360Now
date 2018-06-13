@@ -131,7 +131,7 @@
                     [datasets]="caloriesChartData2"
                     [labels]="caloriesChartLabels"
                     [options]="caloriesChartOptions"
-                    [colors]="caloriesChartColours"
+                    [colors]="caloriesChartColours2"
                     [legend]="caloriesChartLegend"
                     [chartType]="caloriesChartType2"
                     (chartHover)="chartHovered($event)"
@@ -143,8 +143,8 @@
     <div class="card card7" style="margin: 5px" *ngIf="fitness_or_nutrition && havePatients">
       <div class="col">
         <div class="card-header" style="background-color: white">
-          <h5 style="color: black"> Body Measurements - 28 Last days</h5>
           <br>
+          <h5 style="color: black; margin-bottom: 20px">Body Measurements - 28 Last days</h5>
         </div>
         <div class="card-body">
           <div class="chart-wrapper">
@@ -165,6 +165,7 @@
 
     <div class="card card9" style="margin: 5px" *ngIf="!fitness_or_nutrition && havePatients">
       <div class="card-header" style="background-color: white">
+        <br>
         <h5 style="color: black">Workouts Statistics per Week&nbsp;&nbsp;&nbsp;&nbsp;
         </h5>
       </div>
@@ -183,8 +184,8 @@
     <div class="card card10"  style="margin: 5px" *ngIf="!fitness_or_nutrition && havePatients">
       <div class="col">
         <div class="card-header" style="background-color: white">
-          <h5 style="color: black">Workouts - 28 Last days</h5>
           <br>
+          <h5 style="color: black">Workouts - 28 Last days</h5>
         </div>
         <div class="card-body">
           <div class="chart-wrapper">

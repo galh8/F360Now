@@ -610,6 +610,33 @@ export class DashboardComponent implements OnInit{
 
   public caloriesChartColours: Array<any> = [
     { // green
+      backgroundColor: 'rgba(119, 137, 16, 0.8)',
+      borderColor: 'rgba(119, 137, 16, 1)',
+      pointBackgroundColor: 'rgba(119, 137, 16, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(119, 137, 16, 1)'
+    },
+    { // blue
+      backgroundColor: 'rgba(71, 148, 167, 0.8)',
+      borderColor: 'rgba(71, 148, 167, 1)',
+      pointBackgroundColor: 'rgba(71, 148, 167, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(71, 148, 167, 1)'
+    },
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.8)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,1)'
+    }
+  ];
+
+  public caloriesChartColours2: Array<any> = [
+    { // green
       backgroundColor: 'rgba(119, 137, 16, 0.2)',
       borderColor: 'rgba(119, 137, 16, 1)',
       pointBackgroundColor: 'rgba(119, 137, 16, 1)',
@@ -644,28 +671,28 @@ export class DashboardComponent implements OnInit{
 
   public workoutStatChartColours: Array<any> = [
     { // green
-      backgroundColor: 'rgba(119, 137, 16, 0.2)',
+      backgroundColor: 'rgba(119, 137, 16, 0.8)',
       borderColor: 'rgba(119, 137, 16, 1)',
       pointBackgroundColor: 'rgba(119, 137, 16, 1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(119, 137, 16, 0.8)'
+      pointHoverBorderColor: 'rgba(119, 137, 16, 0.1)'
     },
     { // blue
-      backgroundColor: 'rgba(71, 148, 167, 0.2)',
+      backgroundColor: 'rgba(71, 148, 167, 0.8)',
       borderColor: 'rgba(71, 148, 167, 1)',
       pointBackgroundColor: 'rgba(71, 148, 167, 1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(71, 148, 167, 0.8)'
+      pointHoverBorderColor: 'rgba(71, 148, 167, 0.1)'
     },
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
+      backgroundColor: 'rgba(148,159,177,0.8)',
       borderColor: 'rgba(148,159,177,1)',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      pointHoverBorderColor: 'rgba(148,159,177,1)'
     }
   ];
 
