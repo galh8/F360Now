@@ -43,6 +43,8 @@ export class DashboardComponent implements OnInit{
 
   patients: any;
 
+  havePatients = true;
+
   numberOfPatients = 0;
 
   caloriesBurntData: any;
@@ -410,6 +412,9 @@ export class DashboardComponent implements OnInit{
             alert('Error!');
           } else {
             this.patients = data;
+            if (this.patients.length == 0) {
+              this.havePatients = false;
+            }
             // Initialize the data fot the first patient
             this.patient = this.patients[0];
             this.current_patient.first_name = this.patient.first_name;

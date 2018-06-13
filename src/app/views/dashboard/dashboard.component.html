@@ -48,39 +48,48 @@
     </div>
 
     <div class="card card5" style="color: black; margin: 5px">
-      <div class="row">
-        <span style="color: black; font-size: 30px">{{current_patient.first_name}} {{current_patient.last_name}}</span>
+      <div *ngIf="havePatients">
+        <div class="row">
+          <span style="color: black; font-size: 30px">{{current_patient.first_name}} {{current_patient.last_name}}</span>
+        </div>
+        <div class="row"><span style="font-size: 10px; text-align: left">
+          up to: {{dateOfLastMeasure}}</span></div>
+        <div class="row">
+          <div class="col">
+            <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/weight.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.weight}}</span><span style="font-size: 20px">&nbsp;&nbsp;<img [src]="weightStatus" style="height: 35px; width: 20px"></span>
+          </div>
+          <div class="col">
+            <span class="text"><img src="http://grigale.grigale.com/fitness360user_app/TANITA/viscera.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.visceral_fat}}</span><span>&nbsp;&nbsp;<img [src]="visceralStatus" style="height: 35px; width: 20px"></span>
+          </div>
+          <div class="col">
+            <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/bodyfat.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.fat_percentage}}</span><span>&nbsp;&nbsp;<img [src]="fatStatus" style="height: 35px; width: 20px"></span>
+          </div>
+          <div class="col">
+            <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/musclemass.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.mass_weight}}</span><span>&nbsp;&nbsp;<img [src]="massStatus" style="height: 35px; width: 20px"></span>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 25px">
+          <div class="col">
+            <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/body_water.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.body_water}}</span><span>&nbsp;&nbsp;<img [src]="waterStatus" style="height: 35px; width: 20px"></span>
+          </div>
+          <div class="col">
+            <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/bmr.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.bmr}}</span><span>&nbsp;&nbsp;<img [src]="bmrStatus" style="height: 35px; width: 20px"></span>
+          </div>
+          <div class="col">
+            <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/metabolic_age.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.metabolic_age}}</span><span>&nbsp;&nbsp;<img [src]="ageStatus" style="height: 35px; width: 20px"></span>
+          </div>
+          <div class="col">
+            <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/physique_rating.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.physique_rating}}</span><span>&nbsp;&nbsp;<img [src]="physiqueStatus" style="height: 35px; width: 20px"></span>
+          </div>
+        </div>
       </div>
-      <div class="row"><span style="font-size: 10px; text-align: left">
-        up to: {{dateOfLastMeasure}}</span></div>
-      <div class="row">
-        <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/weight.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.weight}}</span><span style="font-size: 20px">&nbsp;&nbsp;<img [src]="weightStatus" style="height: 35px; width: 20px"></span>
-        </div>
-        <div class="col">
-          <span class="text"><img src="http://grigale.grigale.com/fitness360user_app/TANITA/viscera.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.visceral_fat}}</span><span>&nbsp;&nbsp;<img [src]="visceralStatus" style="height: 35px; width: 20px"></span>
-        </div>
-        <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/bodyfat.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.fat_percentage}}</span><span>&nbsp;&nbsp;<img [src]="fatStatus" style="height: 35px; width: 20px"></span>
-        </div>
-        <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/musclemass.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.mass_weight}}</span><span>&nbsp;&nbsp;<img [src]="massStatus" style="height: 35px; width: 20px"></span>
+      <div *ngIf="!havePatients">
+        <div class="row">
+          <span style="color: black; font-size: 35px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You don't have any patients yet!</span>
+          <span style="color: black; font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add patients and you will see their measurements and statistics</span>
         </div>
       </div>
-      <div class="row" style="margin-top: 25px">
-        <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/body_water.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.body_water}}</span><span>&nbsp;&nbsp;<img [src]="waterStatus" style="height: 35px; width: 20px"></span>
-        </div>
-        <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/bmr.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.bmr}}</span><span>&nbsp;&nbsp;<img [src]="bmrStatus" style="height: 35px; width: 20px"></span>
-        </div>
-        <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/metabolic_age.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.metabolic_age}}</span><span>&nbsp;&nbsp;<img [src]="ageStatus" style="height: 35px; width: 20px"></span>
-        </div>
-        <div class="col">
-          <span><img src="http://grigale.grigale.com/fitness360user_app/TANITA/physique_rating.png" style="height: 80px; width: 160px"></span><span style="font-size: 15px"> {{current_patient.physique_rating}}</span><span>&nbsp;&nbsp;<img [src]="physiqueStatus" style="height: 35px; width: 20px"></span>
-        </div>
-      </div>
+
     </div>
 
     <div class="card card8" style="margin: 5px; padding: 15px">
