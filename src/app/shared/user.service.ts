@@ -110,7 +110,7 @@ export class UserService {
     postData.append('start_date', start_date);
     postData.append('last_date', last_date);
 
-    return this.http.post(this.rootUrl + 'get_patient_workouts_by_dates', postData);
+    return this.http.post(this.rootUrl + 'get_patient_workouts_by_dates.php', postData);
   }
 
 

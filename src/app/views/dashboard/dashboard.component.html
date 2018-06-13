@@ -137,12 +137,12 @@
         <div class="card-body">
           <div class="chart-wrapper">
             <canvas baseChart class="chart"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColours"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
+              [datasets]="weightChartData"
+              [labels]="weightChartLabels"
+              [options]="weightChartOptions"
+              [colors]="weightChartColours"
+              [legend]="weightChartLegend"
+              [chartType]="weightChartType"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)">
             </canvas>
@@ -153,17 +153,17 @@
 
     <div class="card card9" style="margin: 5px" *ngIf="!fitness_or_nutrition">
       <div class="card-header" style="background-color: white">
-        <h5 style="color: black">Charts&nbsp;&nbsp;&nbsp;&nbsp;
+        <h5 style="color: black">Workouts Statistics per Week&nbsp;&nbsp;&nbsp;&nbsp;
         </h5>
       </div>
 
       <canvas baseChart class="chart"
-              [datasets]="caloriesChartData"
-              [labels]="caloriesChartLabels"
-              [options]="caloriesChartOptions"
-              [colors]="caloriesChartColours"
-              [legend]="caloriesChartLegend"
-              [chartType]="caloriesChartType"
+              [datasets]="workoutStatChartData"
+              [labels]="workoutStatChartLabels"
+              [options]="workoutStatChartOptions"
+              [colors]="workoutStatChartColours"
+              [legend]="workoutStatChartLegend"
+              [chartType]="workoutStatChartType"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
     </div>
