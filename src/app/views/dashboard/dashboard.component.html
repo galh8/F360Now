@@ -102,7 +102,7 @@
 
 
 
-    <div class="card card6" style="margin: 5px" *ngIf="fitness_or_nutrition">
+    <div class="card card6" style="margin: 5px" *ngIf="fitness_or_nutrition && havePatients">
       <div class="card-header" style="background-color: white">
         <h5 style="color: black">Calories Charts&nbsp;&nbsp;&nbsp;&nbsp;
         <select (change)="onChangeCaloriesCharts($event.target.value)">
@@ -137,7 +137,7 @@
         </div>
     </div>
 
-    <div class="card card7" style="margin: 5px" *ngIf="fitness_or_nutrition">
+    <div class="card card7" style="margin: 5px" *ngIf="fitness_or_nutrition && havePatients">
       <div class="col">
         <div class="card-header" style="background-color: white">
           <h5 style="color: black"> Body Measurements - 28 Last days</h5>
@@ -160,7 +160,7 @@
       </div>
     </div>
 
-    <div class="card card9" style="margin: 5px" *ngIf="!fitness_or_nutrition">
+    <div class="card card9" style="margin: 5px" *ngIf="!fitness_or_nutrition && havePatients">
       <div class="card-header" style="background-color: white">
         <h5 style="color: black">Workouts Statistics per Week&nbsp;&nbsp;&nbsp;&nbsp;
         </h5>
@@ -177,7 +177,7 @@
               (chartClick)="chartClicked($event)"></canvas>
     </div>
 
-    <div class="card card10"  style="margin: 5px" *ngIf="!fitness_or_nutrition">
+    <div class="card card10"  style="margin: 5px" *ngIf="!fitness_or_nutrition && havePatients">
       <div class="col">
         <div class="card-header" style="background-color: white">
           <h5 style="color: black"> - 28 Last days</h5>
