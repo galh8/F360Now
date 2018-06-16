@@ -43,6 +43,7 @@ import {UserService} from './shared/user.service';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './auth/auth.guard';
+import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -66,7 +67,8 @@ import {AuthGuard} from './auth/auth.guard';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   providers: [AuthGuard,
   UserService, {

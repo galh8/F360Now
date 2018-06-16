@@ -129,4 +129,11 @@ export class UserService {
     return this.http.post(this.rootUrl + 'update_patient_meal.php', postData);
   }
 
+  restore_password(therapist_email) {
+    const postData = new FormData();
+    postData.append('email', therapist_email);
+
+    return this.http.post(this.rootUrl + 'send_link.php', postData);
+  }
+
 }
