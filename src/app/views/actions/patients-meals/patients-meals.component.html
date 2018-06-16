@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let meal of current_patient_meals">
-                  <td><img [src]="meal.full_path" style="width: 85%; height: 53.125%" alt=""></td>
+                  <td><img id= "largeImg" [src]="meal.full_path" style="width: 85%; height: 53.125%" alt="" (click)="viewBigger(meal.full_path)"></td>
                   <td td style="font-size: 20px">{{meal.meal_date}}</td>
                   <td td style="font-size: 20px">{{meal.description}}</td>
                   <td style="width: 20%;">

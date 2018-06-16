@@ -83,4 +83,8 @@ export class PatientsMealsComponent implements OnInit {
         });
   }
 
+  public viewBigger(meal_img) {
+    window.open(meal_img,'Image','width=largeImage.stylewidth,height=largeImage.style.height,resizable=1');
+  }
+
 }
