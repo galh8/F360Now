@@ -24,10 +24,11 @@
       <!--<a class="nav-link" href="#"><i class="icon-list"></i></a>-->
     </li>
     <li class="nav-item d-md-down-none">
-      <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
+      <button  style= "background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none;"
+               (click)="this.router.navigateByUrl('actions/patients_meals_images');"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">{{numberOfMealsToUpdate}}</span></button>
     </li>
     <li class="nav-item dropdown" dropdown placement="bottom right">
-      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+      <a class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">
         <img [src]=userPicture class="img-avatar"/>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
