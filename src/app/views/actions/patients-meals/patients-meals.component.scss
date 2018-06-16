@@ -1,0 +1,98 @@
+body {
+  text-align: center;
+}
+
+.wrap {
+  max-width: 100em;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.cards { font-family: Poller One;}
+
+.cards {
+  margin: 2px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "a a"
+    "b b"
+    "c c";
+}
+
+.card {
+  background-color: #1E88E5;
+  padding: 2em;
+  color: #FFFFFF;
+  line-height: 1.4;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.card1 { grid-area: a; background-color: darkgreen;}
+.card2 { grid-area: b; background-color: rgba(222, 227, 216, 1); }
+.card3 { grid-area: c; background-color: white; }
+
+
+.main-box.no-header {
+  padding-top: 20px;
+}
+.main-box {
+  background: #FFFFFF;
+  -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  box-shadow: 1px 1px 2px 0 #CCCCCC;
+  margin-bottom: 8px;
+  -webikt-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.table a.table-link.danger {
+  color: #e74c3c;
+}
+.label {
+  border-radius: 3px;
+  font-size: 0.875em;
+  font-weight: 600;
+}
+.user-list tbody td .user-subhead {
+  font-size: 0.875em;
+  font-style: italic;
+}
+.user-list tbody td .user-link {
+  display: block;
+  font-size: 1.25em;
+}
+a {
+  color: #3498db;
+  outline: none!important;
+}
+.user-list tbody td>img {
+  position: relative;
+  float: left;
+}
+
+.table thead tr th {
+  text-transform: uppercase;
+  font-size: 0.875em;
+}
+.table thead tr th {
+  border-bottom: 2px solid #e7ebee;
+}
+.table tbody tr td:first-child {
+  font-size: 1.125em;
+  font-weight: 300;
+}
+.table tbody tr td {
+  font-size: 0.875em;
+  vertical-align: middle;
+  border-top: 1px solid #e7ebee;
+  padding: 12px 10px;
+}

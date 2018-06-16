@@ -117,7 +117,6 @@ export class DashboardComponent implements OnInit{
 
   public getCurrentDate() {
     const currentDate = new Date().toJSON().slice(0, 10);
-    console.log(currentDate);
     return currentDate;
   }
 
@@ -153,7 +152,6 @@ export class DashboardComponent implements OnInit{
       this.arr_month[j++] = date;
     }
 
-    console.log(this.arr_month);
   }
 
   public caloriesByInterval(data, from, to) {
@@ -211,7 +209,6 @@ export class DashboardComponent implements OnInit{
       for (let j = 0; j < data.length; j++) {
         let date = data[j].activity_time.split(' ')[0];
         if (date === current_date) {
-          console.log(j);
           totalWorkouts = totalWorkouts + 1;
           totalDuration = totalDuration + data[j].duration;
         }
@@ -222,7 +219,6 @@ export class DashboardComponent implements OnInit{
   }
 
   public calculateWorkoutsPerWeek(data) {
-    console.log(data);
     let week1 = this.workoutByInterval(data,0,7);
     let week2 = this.workoutByInterval(data,7,14);
     let week3 = this.workoutByInterval(data,14,21);

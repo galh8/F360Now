@@ -113,6 +113,11 @@ export class UserService {
     return this.http.post(this.rootUrl + 'get_patient_workouts_by_dates.php', postData);
   }
 
+  get_pending_meals_images(therapist_email) {
+    const postData = new FormData();
+    postData.append('therapist_email', therapist_email);
 
+    return this.http.post(this.rootUrl + 'get_pending_meals_images.php', postData);
+  }
 
 }
