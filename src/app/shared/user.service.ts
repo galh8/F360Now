@@ -120,4 +120,13 @@ export class UserService {
     return this.http.post(this.rootUrl + 'get_pending_meals_images.php', postData);
   }
 
+  update_patient_meal(calories, patient_email, image_file_name) {
+    const postData = new FormData();
+    postData.append('calories', calories);
+    postData.append('patient_email', patient_email);
+    postData.append('image_file_name', image_file_name);
+
+    return this.http.post(this.rootUrl + 'update_patient_meal.php', postData);
+  }
+
 }

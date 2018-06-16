@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../../../shared/user.service';
 import { TSMap } from 'typescript-map';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-patients-meals',
@@ -19,7 +20,7 @@ export class PatientsMealsComponent implements OnInit {
   root_url = 'http://grigale.grigale.com/fitness360user_app/user_images/meal_images_new/';
   current_calories = '';
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private location: Location) { }
 
   ngOnInit() {
     this.userService.get_pending_meals_images(localStorage.getItem('email'))
@@ -65,8 +66,21 @@ export class PatientsMealsComponent implements OnInit {
     }
   }
 
-  public send_calories_for_pic() {
-
+  public send_calories_for_pic(calories, patient_email, image_file_name) {
+    console.log(calories);
+    console.log(patient_email);
+    console.log(image_file_name);
+    this.userService.update_patient_meal(calories, patient_email, image_file_name)
+      .subscribe((data: any) => {
+          if (data.error == true) {
+            alert('Error!');
+          } else {
+            location.reload();
+          }
+        },
+        err => {
+          console.log('Error: ' + err.error);
+        });
   }
 
 }
