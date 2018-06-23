@@ -34,7 +34,6 @@ export class AddPatientComponent implements OnInit {
               }
               this.haveRequests = true;
             } else {
-              console.log('im heere!')
               this.showAlert = true;
             }
           }

@@ -39,7 +39,6 @@ export class PatientsMealsComponent implements OnInit {
                 this.list_of_patient.push([key,value[0],value[1]]);
               });
               this.get_all_pending_meals_of_patient(this.list_of_patient[0][0]);
-              console.log(this.meals);
            }
           }
         },

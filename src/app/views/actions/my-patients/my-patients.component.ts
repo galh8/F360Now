@@ -49,7 +49,6 @@ export class MyPatientsComponent implements OnInit {
           if (data.error == true) {
             alert('Error!');
           } else {
-            console.log(data);
             // this.router.navigateByUrl('/actions/add_patient');
           }
         },
