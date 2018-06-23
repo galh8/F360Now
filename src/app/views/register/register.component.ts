@@ -11,7 +11,7 @@ import {User} from '../../shared/user.model'
 })
 export class RegisterComponent implements OnInit {
   user: User;
-  private RePass;
+  RePass: any;
 
   constructor(private router: Router, private userService: UserService) { }
 

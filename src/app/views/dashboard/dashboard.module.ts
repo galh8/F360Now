@@ -3,12 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import {CommonModule} from '@angular/common';
-import { UserComponent } from './user/user.component';
-import { GeneralComponent } from './general/general.component';
+
 
 
 @NgModule({
@@ -20,6 +18,6 @@ import { GeneralComponent } from './general/general.component';
     CommonModule,
     ButtonsModule.forRoot()
   ],
-  declarations: [ DashboardComponent, UserComponent, GeneralComponent ]
+  declarations: [DashboardComponent]
 })
 export class DashboardModule { }

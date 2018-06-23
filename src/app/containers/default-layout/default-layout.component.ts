@@ -42,4 +42,9 @@ export class DefaultLayoutComponent implements OnInit{
           console.log('Error: ' + err.error);
         });
   }
+
+  JumpToForgotPatientMeals() {
+    this.router.navigateByUrl('actions/patients_meals_images');
+  }
+
 }
